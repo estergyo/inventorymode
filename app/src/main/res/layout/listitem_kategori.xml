@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="3">
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="Katergori"
+        android:id="@+id/text_kategori_nama"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="0dp"
+        android:text="Deskripsi"
+        android:id="@+id/text_kategori_deskripsi"
+        android:layout_height="70dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:scrollHorizontally="true"
+        android:layout_weight="2"/>
+
+</LinearLayout>

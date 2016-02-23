@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageEditItem"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:scaleType="center" />
+    <Button
+        android:id="@+id/buttonKameraEI"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:text="edit gambar"/>
+    <EditText
+        android:id="@+id/editTextUpdateNamaEI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:hint="Nama Produk"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="SKU"
+        android:id="@+id/textUpdateSKU"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"/>
+    <EditText
+        android:id="@+id/editTextUpdateJumlah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:inputType="number"
+        android:hint="Jumlah"/>
+    <EditText
+        android:id="@+id/editTextUpdateHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:inputType="number"
+        android:hint="Harga"/>
+    <Spinner
+        android:id="@+id/spinnerUpdateSupplier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp" />
+    <Spinner
+        android:id="@+id/spinnerUpdateKategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp" />
+    <Button
+        android:id="@+id/buttonUpdateEI"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:text="simpan"/>
+</LinearLayout>

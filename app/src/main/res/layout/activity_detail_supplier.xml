@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewNamaDS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Supplier Name"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_margin="12dp"
+        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Alamat Supplier"
+            android:id="@+id/textViewAlamatSupplier"
+            android:layout_margin="6dp" />
+        <TextView
+            android:id="@+id/textViewAlamatDS"
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Supplier address"
+            android:layout_margin="6dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Kontak Supplier"
+            android:id="@+id/textViewKontakSupplier"
+            android:layout_margin="6dp" />
+        <TextView
+            android:id="@+id/textViewKontakDS"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:text="Supplier contact"
+            android:layout_margin="6dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:weightSum="1">
+        <Button
+            android:id="@+id/buttonEditDS"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="edit"
+            android:layout_weight="0.5"/>
+        <Button
+            android:id="@+id/buttonDeleteDS"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="Delete"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+</LinearLayout>

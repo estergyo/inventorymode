@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="6">
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="Nama"
+        android:id="@+id/text_item_nama"
+        android:layout_height="30dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="SKU"
+        android:id="@+id/text_item_sku"
+        android:layout_height="30dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="Jumlah"
+        android:id="@+id/text_item_jumlah"
+        android:layout_height="30dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="Harga"
+        android:id="@+id/text_item_harga"
+        android:layout_height="30dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="Supplier"
+        android:id="@+id/text_item_supplier"
+        android:layout_height="30dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="Kategori"
+        android:id="@+id/text_item_kategori"
+        android:layout_height="30dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

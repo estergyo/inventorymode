@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.priansyah.demo1">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+                  android:label="@string/inventory">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailItemActivity"
+                  android:label="@string/detail_item">
+        </activity>
+        <activity android:name=".TambahItemActivity"
+            android:label="@string/tambah_item">
+        </activity>
+        <activity android:name=".DetailKategoriActivity"
+            android:label="@string/detail_kategori">
+        </activity>
+        <activity android:name=".TambahKategoriActivity"
+            android:label="@string/tambah_kategori">
+        </activity>
+        <activity android:name=".DetailSupplierActivity"
+            android:label="@string/detail_supplier">
+        </activity>
+        <activity android:name=".TambahSupplierActivity"
+            android:label="@string/tambah_supplier">
+        </activity>
+        <activity android:name=".InputProductName"
+            android:label="@string/input_product_name">
+        </activity>
+        <activity android:name=".EditItemActivity"
+            android:label="@string/edit_item">
+        </activity>
+        <activity android:name=".EditKategoriActivity"
+            android:label="@string/edit_kategori">
+        </activity>
+        <activity android:name=".EditSupplierActivity"
+            android:label="@string/edit_supplier">
+        </activity>
+    </application>
+
+</manifest>
