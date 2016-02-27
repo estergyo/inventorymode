@@ -21,4 +21,17 @@
     <integer name="item_edit_rq_code">8</integer>
     <integer name="category_edit_rq_code">9</integer>
     <integer name="supplier_edit_rq_code">10</integer>
+
+    <string name="discount1">10%</string>
+    <string name="discount2">15%</string>
+    <string name="discount3">20%</string>
+    <string name="tanggal">17/01/2016</string>
+    <string name="diskon">Diskon</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="receipt">Receipt</string>
+    <string name="transaksi">Transaksi</string>
+    <string name="search_hint">Tulis nama barang</string>
+    <string name="action_settings">Setting</string>
+    <string name="menu_search">Cari</string>
+
 </resources>

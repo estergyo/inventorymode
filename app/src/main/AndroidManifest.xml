@@ -46,6 +46,28 @@
         <activity android:name=".EditSupplierActivity"
             android:label="@string/edit_supplier">
         </activity>
+        <activity android:name=".DiskonActivity"
+            android:label="@string/diskon">
+        </activity>
+        <activity android:name=".KonfirmasiActivity"
+            android:label="@string/konfirmasi">
+        </activity>
+        <activity android:name=".ReceiptActivity"
+            android:label="@string/receipt">
+        </activity>
+        <activity android:name=".TransaksiActivity"
+            android:label="@string/transaksi">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity android:name=".InventoryActivity"
+            android:label="@string/inventory">
+        </activity>
     </application>
 
 </manifest>

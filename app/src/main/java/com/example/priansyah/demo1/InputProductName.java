@@ -149,7 +149,7 @@ public class InputProductName extends ActionBarActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         Intent pName = getIntent();
-        String scanContent = pName.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String scanContent = pName.getStringExtra(InventoryActivity.EXTRA_MESSAGE);
         SQLiteDatabase dbIPN = openOrCreateDatabase("POS", MODE_PRIVATE, null);
         if (nameTxtFld.getText().length() == 0 || scanContent.length() == 0 || priceTxtFld.getText().equals(0) || imageItemIPN.getDrawable()== null) {
             Toast.makeText(InputProductName.this, "data produk tidak boleh kosong", Toast.LENGTH_SHORT).show();
