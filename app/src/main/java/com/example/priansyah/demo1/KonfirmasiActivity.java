@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.priansyah.demo1.Adapter.ListItemAdapter;
 import com.example.priansyah.demo1.Entity.Item;
+import com.example.priansyah.demo1.Entity.TransDetail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,11 +29,13 @@ public class KonfirmasiActivity extends AppCompatActivity {
     Double discountKonfirmasi;
     RecyclerView recList;
     ArrayList<Item> listOfItemsKfm;
+    ArrayList<TransDetail> listOfTransactionDetail;
     ListItemAdapter adapter;
     Button buttonLanjutKonfirmasi;
     int total;
     TextView textViewDiskonKfm;
     TextView textViewTotalKfm;
+    TextView textViewTanggal;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +44,12 @@ public class KonfirmasiActivity extends AppCompatActivity {
 
         textViewDiskonKfm = (TextView) findViewById(R.id.textViewDiskonKfm);
         textViewTotalKfm = (TextView) findViewById(R.id.textViewTotalKfm);
+        textViewTanggal = (TextView) findViewById(R.id.textViewTanggal);
 
         discountKonfirmasi = (Double) getIntent().getSerializableExtra("discount");
+        listOfTransactionDetail = getIntent().getParcelableArrayListExtra("TRANSDETLIST");
+
+        textViewTanggal.setText(listOfTransactionDetail.get(listOfTransactionDetail.size()-1).getTextTanggalTrans());
 
         recList = (RecyclerView) findViewById(R.id.listViewItemKonfirmasi);
         recList.setHasFixedSize(true);
@@ -51,8 +58,13 @@ public class KonfirmasiActivity extends AppCompatActivity {
         recList.setLayoutManager(llm);
 
         listOfItemsKfm = getIntent().getParcelableArrayListExtra("LIST");
-        int t = 20000;
-        total = t - (int)(discountKonfirmasi*t);
+
+        int harga = 0;
+        for (int i=0; i<listOfItemsKfm.size(); i++) {
+            harga += Integer.parseInt(listOfItemsKfm.get(i).getTextHarga());
+        }
+
+        total = harga - (int) Math.ceil(discountKonfirmasi * harga);
         discountKonfirmasi= 100*discountKonfirmasi;
 
         adapter = new ListItemAdapter(this, getBaseContext(), listOfItemsKfm);
@@ -72,6 +84,7 @@ public class KonfirmasiActivity extends AppCompatActivity {
                 intent.putExtra("LIST", listOfItemsKfm);
                 intent.putExtra("TOTAL", total);
                 intent.putExtra("PAYMENT_VALUE", paymentValue);
+                intent.putExtra("TRANSDETLIST", listOfTransactionDetail);
                 startActivity(intent);
             }
         });

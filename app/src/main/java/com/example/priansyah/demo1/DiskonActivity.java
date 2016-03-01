@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.priansyah.demo1.Entity.Item;
+import com.example.priansyah.demo1.Entity.TransDetail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class DiskonActivity extends AppCompatActivity {
     RadioButton radioDisc2;
     RadioButton radioDisc3;
     ArrayList<Item> listOfItemsDisc;
+    ArrayList<TransDetail> listOfTransactionDetail;
     Button buttonLanjutDiskon;
 
     @Override
@@ -36,6 +38,7 @@ public class DiskonActivity extends AppCompatActivity {
         radioDisc2 = (RadioButton) findViewById(R.id.radioDisc2);
         radioDisc3 = (RadioButton) findViewById(R.id.radioDisc3);
         listOfItemsDisc = getIntent().getParcelableArrayListExtra("LIST");
+        listOfTransactionDetail = getIntent().getParcelableArrayListExtra("TRANSDETLIST");
 
         buttonLanjutDiskon = (Button) findViewById(R.id.buttonLanjutDiskon);
         buttonLanjutDiskon.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +54,7 @@ public class DiskonActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(getBaseContext(), KonfirmasiActivity.class);
                 intent.putExtra("LIST", listOfItemsDisc);
+                intent.putExtra("TRANSDETLIST", listOfTransactionDetail);
                 intent.putExtra("discount", disc);
                 startActivity(intent);
             }

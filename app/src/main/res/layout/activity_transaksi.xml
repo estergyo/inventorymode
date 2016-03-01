@@ -11,11 +11,20 @@
         android:background="?attr/colorPrimary"
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchViewTransaksi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp" >
+    </android.support.v7.widget.SearchView>
     <Button
         android:id="@+id/buttonTambahItemTr"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_margin="12dp"
+        android:layout_marginBottom="12dp"
         android:layout_gravity="center"
         android:text="Tambah Barang"
         android:layout_weight="0.9"/>
@@ -69,7 +78,7 @@
         android:id="@+id/listViewItemTransaksi"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7.4"/>
+        android:layout_weight="6.5"/>
 
     <Button
         android:layout_width="match_parent"

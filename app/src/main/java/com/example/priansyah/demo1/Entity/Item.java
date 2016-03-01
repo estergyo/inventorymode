@@ -20,6 +20,7 @@ public class Item implements Parcelable {
         textNama = "";
         textSKU = "";
         textJumlah = "";
+        textHarga = "";
         textSupplier = "";
         textKategori = "";
         image = "";
