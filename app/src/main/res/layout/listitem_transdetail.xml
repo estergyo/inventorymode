@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="5">
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="No"
+        android:id="@+id/text_transdetail_trans_id"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="0dp"
+        android:text="nama"
+        android:id="@+id/text_transdetail_nama"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="0dp"
+        android:text="Jumlah"
+        android:id="@+id/text_transdetail_jumlah"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="0dp"
+        android:text="Harga"
+        android:id="@+id/text_transdetail_harga"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="0dp"
+        android:text="Tanggal"
+        android:id="@+id/text_transdetail_tanggal"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+</LinearLayout>

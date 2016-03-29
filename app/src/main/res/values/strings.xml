@@ -21,10 +21,12 @@
     <integer name="item_edit_rq_code">8</integer>
     <integer name="category_edit_rq_code">9</integer>
     <integer name="supplier_edit_rq_code">10</integer>
+    <integer name="item_transaksi_rq_code">11</integer>
 
     <string name="discount1">10%</string>
     <string name="discount2">15%</string>
     <string name="discount3">20%</string>
+    <string name="discount4">0%</string>
     <string name="tanggal">17/01/2016</string>
     <string name="diskon">Diskon</string>
     <string name="konfirmasi">Konfirmasi</string>
@@ -33,5 +35,18 @@
     <string name="search_hint">Tulis nama barang</string>
     <string name="action_settings">Setting</string>
     <string name="menu_search">Cari</string>
+    <string name="kirim_receipt">Kirim Receipt</string>
+    <string name="pilih_item_transaksi">Pilih Item Transaksi</string>
+    <string name="detail_transaksi">Detail Transaksi</string>
+    <string name="refund">Refund</string>
+
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
+    <string name="nav_sub_header">POS</string>
+
+    <string name="USER_PREFERENCES">user</string>
+    <string name="user_nama">nama</string>
+    <string name="user_password">password</string>
+    <string name="URL_GET_USER">http://barado.co/index.php/api/auth/username_check</string>
 
 </resources>

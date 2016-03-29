@@ -24,7 +24,7 @@ public class DiskonActivity extends AppCompatActivity {
     RadioButton radioDisc1;
     RadioButton radioDisc2;
     RadioButton radioDisc3;
-    ArrayList<Item> listOfItemsDisc;
+    RadioButton radioDisc4;
     ArrayList<TransDetail> listOfTransactionDetail;
     Button buttonLanjutDiskon;
 
@@ -37,7 +37,8 @@ public class DiskonActivity extends AppCompatActivity {
         radioDisc1 = (RadioButton) findViewById(R.id.radioDisc1);
         radioDisc2 = (RadioButton) findViewById(R.id.radioDisc2);
         radioDisc3 = (RadioButton) findViewById(R.id.radioDisc3);
-        listOfItemsDisc = getIntent().getParcelableArrayListExtra("LIST");
+        radioDisc4 = (RadioButton) findViewById(R.id.radioDisc4);
+//        listOfItemsDisc = getIntent().getParcelableArrayListExtra("LIST");
         listOfTransactionDetail = getIntent().getParcelableArrayListExtra("TRANSDETLIST");
 
         buttonLanjutDiskon = (Button) findViewById(R.id.buttonLanjutDiskon);
@@ -49,11 +50,15 @@ public class DiskonActivity extends AppCompatActivity {
                     disc = 0.1;
                 } else if (selectedId == radioDisc2.getId()) {
                     disc = 0.15;
-                } else {
+                } else if (selectedId == radioDisc3.getId()) {
                     disc = 0.2;
                 }
+                else {
+                    disc = 0.0;
+                }
+
                 Intent intent = new Intent(getBaseContext(), KonfirmasiActivity.class);
-                intent.putExtra("LIST", listOfItemsDisc);
+//                intent.putExtra("LIST", listOfItemsDisc);
                 intent.putExtra("TRANSDETLIST", listOfTransactionDetail);
                 intent.putExtra("discount", disc);
                 startActivity(intent);

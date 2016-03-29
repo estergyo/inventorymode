@@ -1,5 +1,6 @@
 package com.example.priansyah.demo1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -51,7 +52,7 @@ public class ListSupplierFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TambahSupplierActivity.class);
-                getActivity().startActivityForResult(intent,getResources().getInteger(R.integer.supplier_new_rq_code));
+                getParentFragment().startActivityForResult(intent, getResources().getInteger(R.integer.supplier_new_rq_code));
             }
         });
 
@@ -81,9 +82,14 @@ public class ListSupplierFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), DetailSupplierActivity.class);
                 intent.putExtra("Supplier", listOfSuppliers.get(position));
-                getActivity().startActivityForResult(intent,getResources().getInteger(R.integer.supplier_update_rq_code));
+                getParentFragment().startActivityForResult(intent, getResources().getInteger(R.integer.supplier_update_rq_code));
             }
         });
         recList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode,resultCode,intent);
     }
 }

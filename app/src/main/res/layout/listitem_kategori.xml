@@ -6,7 +6,7 @@
 
     <TextView
         android:layout_width="0dp"
-        android:text="Katergori"
+        android:text="Kategori"
         android:id="@+id/text_kategori_nama"
         android:layout_height="match_parent"
         android:layout_weight="1"/>

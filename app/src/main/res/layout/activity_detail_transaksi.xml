@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detail Transaksi"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_margin="12dp"
+        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:layout_margin="6dp" />
+        <TextView
+            android:id="@+id/textViewIdTransaksi"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:text="Transaction ID"
+            android:layout_margin="6dp" /> />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Tanggal"
+            android:layout_margin="6dp" />
+        <TextView
+            android:id="@+id/textViewTanggalTransaksi"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:text="Transaction Date"
+            android:layout_margin="6dp" /> />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recViewDetailTransaksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Diskon"
+            android:layout_margin="6dp" />
+        <TextView
+            android:id="@+id/textViewDiskonTransaksi"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:text="Transaction Discount"
+            android:layout_margin="6dp" /> />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Pajak"
+            android:layout_margin="6dp" />
+        <TextView
+            android:id="@+id/textViewPajakTransaksi"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:text="Transaction Tax"
+            android:layout_margin="6dp" /> />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:layout_margin="6dp" />
+        <TextView
+            android:id="@+id/textViewTotalTransaksi"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:text="Total Price"
+            android:layout_margin="6dp" /> />
+    </LinearLayout>
+    <Button
+        android:id="@+id/buttonRefund"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:text="refund"
+        android:layout_gravity="center"/>
+</LinearLayout>

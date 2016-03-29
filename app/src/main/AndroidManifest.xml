@@ -68,6 +68,27 @@
         <activity android:name=".InventoryActivity"
             android:label="@string/inventory">
         </activity>
+        <activity android:name=".KirimReceiptActivity"
+            android:label="@string/kirim_receipt">
+        </activity>
+        <activity android:name=".PilihItemTransaksiActivity"
+            android:label="@string/pilih_item_transaksi">
+        </activity>
+        <activity android:name=".DetailTransaksiActivity"
+            android:label="@string/detail_transaksi">
+        </activity>
+        <activity android:name=".RefundActivity"
+            android:label="@string/refund">
+        </activity>
+        <activity android:name=".LoginActivity"
+            android:label="@string/refund">
+        </activity>
+        <activity android:name=".RegisterActivity"
+            android:label="@string/refund">
+        </activity>
+        <activity android:name=".HomeActivity"
+            android:label="@string/refund">
+        </activity>
     </application>
 
 </manifest>

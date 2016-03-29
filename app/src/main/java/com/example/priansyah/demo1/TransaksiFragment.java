@@ -1,13 +1,13 @@
 package com.example.priansyah.demo1;
 
-import android.app.SearchManager;
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,15 +15,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.priansyah.demo1.Adapter.ListDetilTransaksiAdapter;
-import com.example.priansyah.demo1.Adapter.ListItemAdapter;
 import com.example.priansyah.demo1.Adapter.SearchItemAdapter;
 import com.example.priansyah.demo1.Entity.Item;
 import com.example.priansyah.demo1.Entity.TransDetail;
@@ -33,10 +30,9 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Created by Priansyah on 2/26/2016.
+ * Created by Priansyah on 3/21/2016.
  */
-public class TransaksiActivity extends AppCompatActivity {
-
+public class TransaksiFragment extends Fragment {
     RecyclerView recList;
     ListDetilTransaksiAdapter adapter;
     Button buttonTambahItemTr;
@@ -51,25 +47,29 @@ public class TransaksiActivity extends AppCompatActivity {
     int amount = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaksi);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarTransaksi);
-        setSupportActionBar(myToolbar);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_transaksi, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Toolbar myToolbar = (Toolbar) getActivity().findViewById(R.id.toolbarTransaksi);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(myToolbar);
 
         listOfTransactionDetail = new ArrayList<>();
 
-        buttonTambahItemTr = (Button) findViewById(R.id.buttonTambahItemTr);
+        buttonTambahItemTr = (Button) getActivity().findViewById(R.id.buttonTambahItemTr);
 
         buttonTambahItemTr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), PilihItemTransaksiActivity.class);
+                Intent intent = new Intent(getActivity().getBaseContext(), PilihItemTransaksiActivity.class);
                 startActivityForResult(intent, getResources().getInteger(R.integer.item_transaksi_rq_code));
             }
         });
 
-        dbListItemTr = openOrCreateDatabase("POS", MODE_PRIVATE, null);
+        dbListItemTr = getActivity().openOrCreateDatabase("POS", getActivity().MODE_PRIVATE, null);
         dbListItemTr.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
 
 //        dbListItemTr.execSQL("DROP TABLE IF EXISTS transaction_detail");
@@ -77,23 +77,23 @@ public class TransaksiActivity extends AppCompatActivity {
 
 
 
-        recList = (RecyclerView) findViewById(R.id.listViewItemTransaksi);
+        recList = (RecyclerView) getActivity().findViewById(R.id.listViewItemTransaksi);
         recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        buttonLanjutTransaksi = (Button) findViewById(R.id.buttonLanjutTransaksi);
+        buttonLanjutTransaksi = (Button) getActivity().findViewById(R.id.buttonLanjutTransaksi);
         buttonLanjutTransaksi.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), DiskonActivity.class);
+                Intent intent = new Intent(getActivity().getBaseContext(), DiskonActivity.class);
                 intent.putExtra("TRANSDETLIST", listOfTransactionDetail);
                 startActivity(intent);
             }
         });
-        dbSearchItem = openOrCreateDatabase("POS", MODE_PRIVATE, null);
+        dbSearchItem = getActivity().openOrCreateDatabase("POS", getActivity().MODE_PRIVATE, null);
 
-        search = (SearchView) findViewById(R.id.searchViewTransaksi);
+        search = (SearchView) getActivity().findViewById(R.id.searchViewTransaksi);
         search.setQueryHint("Search...");
         search.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
             @Override
@@ -125,7 +125,7 @@ public class TransaksiActivity extends AppCompatActivity {
                 return true;
             }
         });
-        searchCursorAdapter = new SearchItemAdapter(this, columns);
+        searchCursorAdapter = new SearchItemAdapter(getActivity(), columns);
         search.setSuggestionsAdapter(searchCursorAdapter);
     }
 
@@ -192,7 +192,7 @@ public class TransaksiActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if(requestCode == getResources().getInteger(R.integer.item_transaksi_rq_code))
-            if(resultCode == RESULT_OK){
+            if(resultCode == Activity.RESULT_OK){
                 Calendar c = Calendar.getInstance();
                 String date = c.get(Calendar.DATE) +"/" + c.get(Calendar.MONTH) +"/" + c.get(Calendar.YEAR);
                 ArrayList<Item> listItem = intent.getParcelableArrayListExtra("PILIHITEMLIST");
@@ -268,7 +268,7 @@ public class TransaksiActivity extends AppCompatActivity {
 //    }
 
     public void setList(){
-        adapter = new ListDetilTransaksiAdapter(this, getBaseContext(), listOfTransactionDetail);
+        adapter = new ListDetilTransaksiAdapter(getActivity(), getContext(), listOfTransactionDetail);
 //        adapter.setOnItemClickListener(new ListItemAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(View view, int position) {

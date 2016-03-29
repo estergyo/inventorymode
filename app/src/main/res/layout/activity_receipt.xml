@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total"
+            android:text="Kembalian"
             android:id="@+id/textViewKembalian"
             android:layout_weight="1"/>
 
@@ -67,4 +67,10 @@
             android:id="@+id/textViewKembalianRcp"
             android:layout_weight="1"/>
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonKirim"
+        android:layout_gravity="center"
+        android:text="kirim receipt"/>
 </LinearLayout>
