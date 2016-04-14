@@ -44,9 +44,11 @@
     <string name="drawer_close">drawer close</string>
     <string name="nav_sub_header">POS</string>
 
-    <string name="USER_PREFERENCES">user</string>
-    <string name="user_nama">nama</string>
-    <string name="user_password">password</string>
-    <string name="URL_GET_USER">http://barado.co/index.php/api/auth/username_check</string>
+    <string name="LOGIN_PREFERENCES">user</string>
+    <string name="key_nama">nama</string>
+    <string name="key_isLogin">isLoggedIn</string>
+
+    <string name="URL_GET_USERNAME">http://barado.co/index.php/api/auth/username_check?username=nancenka</string>
+    <string name="URL_GET_USEREMAIL">http://barado.co/index.php/api/auth/email_check?email=nancenka@gmail.com</string>
 
 </resources>

@@ -5,18 +5,18 @@
         <item
             android:id="@+id/nav_first_fragment"
             android:title="Inventori" />
+        <!--<item-->
+            <!--android:id="@+id/navigation_subheader"-->
+            <!--android:title="@string/nav_sub_header">-->
+            <!--<menu>-->
         <item
-            android:id="@+id/navigation_subheader"
-            android:title="@string/nav_sub_header">
-            <menu>
-                <item
-                    android:id="@+id/nav_second_fragment"
-                    android:title="Transaksi Baru" />
-                <item
-                    android:id="@+id/nav_third_fragment"
-                    android:title="Histori Transaksi" />
-            </menu>
-        </item>
+            android:id="@+id/nav_second_fragment"
+            android:title="Transaksi Baru" />
+        <item
+            android:id="@+id/nav_third_fragment"
+            android:title="Histori Transaksi" />
+            <!--</menu>-->
+        <!--</item>-->
         <item
             android:id="@+id/nav_fourth_fragment"
             android:title="Logout" />

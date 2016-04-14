@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.priansyah.demo1.Adapter.ListDetilTransaksiAdapter;
 import com.example.priansyah.demo1.Entity.TransDetail;
@@ -51,12 +53,19 @@ public class DetailTransaksiActivity extends AppCompatActivity {
         textViewTotalTransaksi = (TextView) findViewById(R.id.textViewTotalTransaksi);
 
         transaksi = intent.getParcelableExtra("Transaksi");
-        setTexts();
-
         buttonRefund = (Button) findViewById(R.id.buttonRefund);
 
         dbDetailTransaksi = openOrCreateDatabase("POS", MODE_PRIVATE, null);
         dbDetailTransaksi.execSQL("Create table if not exists stock_transaction(transaction_id INT, discount INT, tax VARCHAR, date_created VARCHAR);");
+        dbDetailTransaksi.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, price VARCHAR, date_created VARCHAR);");
+
+        recList = (RecyclerView) findViewById(R.id.recViewDetailTransaksi);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
+        setList();
+        setTexts();
 
         buttonRefund.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,14 +77,6 @@ public class DetailTransaksiActivity extends AppCompatActivity {
 //                startActivityForResult(intent, getResources().getInteger(R.integer.category_edit_rq_code));
             }
         });
-
-        recList = (RecyclerView) findViewById(R.id.recViewDetailTransaksi);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        setList();
-        setTexts();
 
     }
 
@@ -94,27 +95,28 @@ public class DetailTransaksiActivity extends AppCompatActivity {
         textViewTanggalTransaksi.setText(transaksi.getTextTanggalTrans());
         textViewDiskonTransaksi.setText(transaksi.getTextDiskon());
         textViewPajakTransaksi.setText(transaksi.getTextPajak());
+        textViewTotalTransaksi.setText(transaksi.getTextTotalTrans());
 
     }
 
     public void setList(){
         listOfDetTrans = new ArrayList<>();
-
-        dbDetailTransaksi.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, price VARCHAR, date_created VARCHAR);");
-        Cursor transDet = dbDetailTransaksi.rawQuery("select * from transaction_detail where transaction_id = '" + transaksi.getTextTransId() + "' ", null);
-
-        if(transDet != null)
-            if(transDet.moveToFirst())
-                do{
-                    dbDetailTransaksi.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
-                    Cursor item = dbDetailTransaksi.rawQuery("select * from stock where sku = '" + transDet.getInt(2) + "' ", null);
-                    if(item.moveToFirst())
-                        do {
-                            listOfDetTrans.add(new TransDetail("" + transDet.getInt(0), item.getString(0), transDet.getString(1), transDet.getString(2), transDet.getString(3), transDet.getString(4)));
-                        }while(item.moveToNext());
-                }while(transDet.moveToNext());
-
-        adapter = new ListDetilTransaksiAdapter(this, getBaseContext(), listOfDetTrans);
+        int transId = Integer.parseInt(transaksi.getTextTransId().toString());
+        Log.v("int", "" + transId);
+        Cursor transDet = dbDetailTransaksi.rawQuery("select * from transaction_detail where transaction_id = '" + transId  + "' ", null);
+        if(transDet != null) {
+            Log.v("coba", "" + transDet.getCount());
+            if (transDet.moveToFirst())
+                do {
+//                    dbDetailTransaksi.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
+//                    Cursor item = dbDetailTransaksi.rawQuery("select name from stock where sku = '" + transDet.getInt(2) + "' ", null);
+//                    String nama = item.getString(0);
+                    if (transDet.moveToFirst())
+                        listOfDetTrans.add(new TransDetail("" + transDet.getInt(0), "nama", transDet.getString(1), transDet.getString(2), transDet.getString(3), transDet.getString(4)));
+//                    Log.v("dalem", "" + transDet.getString(2));
+                } while (transDet.moveToNext());
+        }
+        adapter = new ListDetilTransaksiAdapter(DetailTransaksiActivity.this, getBaseContext(), listOfDetTrans);
         recList.setAdapter(adapter);
     }
 }

@@ -12,33 +12,33 @@ public class Transaksi implements Parcelable {
     private String textDiskon;
     private String textPajak;
     private String textTanggalTrans;
-//    private String textTotalTrans;
+    private String textTotalTrans;
 
     public Transaksi(){
         textTransId = "";
+        textTotalTrans="";
         textDiskon = "";
         textPajak = "";
         textTanggalTrans = "";
-//        textTotalTrans="";
     }
 
-    public Transaksi(String textTransId, String textDiskon, String textPajak, String textTanggalTrans){
+    public Transaksi(String textTransId, String textTotalTrans, String textDiskon, String textPajak, String textTanggalTrans){
         this.textTransId = textTransId;
+        this.textTotalTrans = textTotalTrans;
         this.textDiskon = textDiskon;
         this.textPajak = textPajak;
         this.textTanggalTrans = textTanggalTrans;
-//        this.textTotalTrans = textTotalTrans;
     }
 
     public Transaksi(Parcel in){
-        String[] data = new String[4];
+        String[] data = new String[5];
 
         in.readStringArray(data);
         this.textTransId = data[0];
-        this.textDiskon = data[1];
-        this.textPajak = data[2];
-        this.textTanggalTrans = data[3];
-//        this.textTotalTrans = data[4];
+        this.textTotalTrans = data[1];
+        this.textDiskon = data[2];
+        this.textPajak = data[3];
+        this.textTanggalTrans = data[4];
     }
 
     @Override
@@ -49,6 +49,7 @@ public class Transaksi implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringArray(new String[] {this.textTransId,
+                this.textTotalTrans,
                 this.textDiskon,
                 this.textPajak,
                 this.textTanggalTrans,
@@ -97,11 +98,11 @@ public class Transaksi implements Parcelable {
         this.textTanggalTrans = textTanggalTrans;
     }
 
-//    public String getTextTotalTrans() {
-//        return textTotalTrans;
-//    }
-//
-//    public void setTextTotalTrans(String textTotalTrans) {
-//        this.textTotalTrans = textTotalTrans;
-//    }
+    public String getTextTotalTrans() {
+        return textTotalTrans;
+    }
+
+    public void setTextTotalTrans(String textTotalTrans) {
+        this.textTotalTrans = textTotalTrans;
+    }
 }

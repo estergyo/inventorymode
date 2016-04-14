@@ -25,6 +25,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 public class MainActivity extends AppCompatActivity {
     Button buttonLogin;
     Button buttonSignUp;
+    Intent intent;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
+
+        session = new SessionManager(getApplicationContext());
+
+        if (session.isLoggedIn()) {
+            intent = new Intent(MainActivity.this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

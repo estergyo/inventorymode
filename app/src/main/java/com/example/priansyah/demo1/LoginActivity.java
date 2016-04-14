@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,79 +32,50 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextPasswordLogin;
     Button buttonToLogin;
 
-    SharedPreferences sharedpreferences;
     Intent intent;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        session = new SessionManager(getApplicationContext());
+
         editTextUserNameLogin = (EditText) findViewById(R.id.editTextUserNameLogin);
         editTextPasswordLogin = (EditText) findViewById(R.id.editTextPasswordLogin);
 
         buttonToLogin=(Button)findViewById(R.id.buttonToLogin);
-        sharedpreferences = getSharedPreferences(getResources().getString(R.string.USER_PREFERENCES), Context.MODE_PRIVATE);
         buttonToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SQLiteDatabase db = openOrCreateDatabase("POS", MODE_PRIVATE, null);
+                db.execSQL("Create table if not exists user(store_name VARCHAR, name VARCHAR, email VARCHAR, username VARCHAR, password VARCHAR);");
+                Cursor uname = db.rawQuery("select * from user where username = '" + editTextUserNameLogin.getText() + "' ", null);
+                if (uname.getCount() == 0) {
+                    Toast.makeText(LoginActivity.this, "username tidak terdaftar", Toast.LENGTH_SHORT).show();
+                } else {
+                    Cursor passwd = db.rawQuery("select password from user where username = '" + editTextUserNameLogin.getText() + "' ", null);
+                    if (passwd.moveToFirst()) {
+                        if (passwd.getString(0).equals(editTextPasswordLogin.getText().toString())) {
 
+                            session.createLoginSession(editTextUserNameLogin.getText().toString());
 
-//                SharedPreferences.Editor editor = sharedpreferences.edit();
-//
-//                editor.putString(Username, uname);
-//                editor.putString(Password, passwd);
-//                editor.commit();
-                check();
-
-                intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    private void check() {
-        String uname = editTextUserNameLogin.getText().toString();
-//        String passwd = editTextPasswordLogin.getText().toString();
-
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("username", uname);
-//        params.put("password", passwd);
-
-        CustomRequest request = new CustomRequest(Request.Method.POST,
-                getResources().getString(R.string.URL_GET_USER),
-                params,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if(response.getInt("status")==0){
-                                SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString(getResources().getString(R.string.user_nama), (response.getString("data")));
-//                                editor.putString(getResources().getString(R.string.user_password), (response.getString("data")));
-
-                                editor.commit();
-
-                            }else{
-                                Toast.makeText(LoginActivity.this, "Pengguna belum terdaftar", Toast.LENGTH_LONG).show();
-                            }
-                            resetTexts();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "password salah", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                resetTexts();
-                Toast.makeText(LoginActivity.this, "Connection problem occured, please try again", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
-    private void resetTexts(){
-        editTextUserNameLogin.setText("");
-        editTextPasswordLogin.setText("");
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

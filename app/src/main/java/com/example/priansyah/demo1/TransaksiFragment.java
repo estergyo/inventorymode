@@ -54,8 +54,6 @@ public class TransaksiFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toolbar myToolbar = (Toolbar) getActivity().findViewById(R.id.toolbarTransaksi);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(myToolbar);
 
         listOfTransactionDetail = new ArrayList<>();
 

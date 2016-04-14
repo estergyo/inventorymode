@@ -6,11 +6,18 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 /**
  * Created by Priansyah on 3/26/2016.
@@ -20,11 +27,19 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        session = new SessionManager(getApplicationContext());
+        session.checkLogin();
+
+        // get user data from session
+        HashMap<String, String> user = session.getUserDetails();
+        String name = user.get(getResources().getString(R.string.key_nama));
 
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -32,17 +47,21 @@ public class HomeActivity extends AppCompatActivity {
 
         // Find our drawer view
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         drawerToggle = setupDrawerToggle();
-
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.setDrawerListener(drawerToggle);
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
+        View header = LayoutInflater.from(this).inflate(R.layout.nav_header, null);
+
+        nvDrawer.addHeaderView(header);
+        TextView headerText = (TextView) header.findViewById(R.id.textViewHeader);
+        headerText.setText(name);
         setupDrawerContent(nvDrawer);
-
-
+        if (savedInstanceState == null) {
+            nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
+        }
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -58,7 +77,6 @@ public class HomeActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-        navigationView.setCheckedItem(0);
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
@@ -70,15 +88,19 @@ public class HomeActivity extends AppCompatActivity {
         switch(menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 fragmentClass = InventoryFragment.class;
+                Log.d("title",menuItem.getTitle()+"");
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = TransaksiFragment.class;
+                Log.d("title",menuItem.getTitle()+"");
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = HistoriTransaksiFragment.class;
+                Log.d("title",menuItem.getTitle()+"");
                 break;
             case R.id.nav_fourth_fragment:
                 fragmentClass = LogoutFragment.class;
+                session.logoutUser();
                 break;
             default:
                 fragmentClass = InventoryFragment.class;
@@ -96,8 +118,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // Highlight the selected item, update the title, and close the drawer
         // Highlight the selected item has been done by NavigationView
-        // menuItem.setChecked(true);
-        setTitle(menuItem.getTitle());
+//         menuItem.setChecked(true);
+        getSupportActionBar().setTitle(menuItem.getTitle());
         mDrawer.closeDrawers();
 
     }

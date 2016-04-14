@@ -52,12 +52,12 @@ public class HistoriTransaksiFragment extends Fragment {
 
     public void setList(){
         listOfTransaction = new ArrayList<>();
-        dbListTransaksi.execSQL("Create table if not exists stock_transaction(transaction_id INT, discount INT, tax VARCHAR, date_created VARCHAR, total VARCHAR);");
+        dbListTransaksi.execSQL("Create table if not exists stock_transaction(transaction_id INT, total INT, discount INT, tax VARCHAR, date_created VARCHAR);");
         Cursor items = dbListTransaksi.rawQuery("select * from stock_transaction",null);
         if(items != null)
             if(items.moveToFirst())
                 do{
-                    listOfTransaction.add(new Transaksi(""+items.getInt(0),""+items.getInt(1),items.getString(2),items.getString(3)));
+                    listOfTransaction.add(new Transaksi(""+items.getInt(0),""+items.getInt(1),""+items.getInt(2),items.getString(3),items.getString(4)));
                 }while(items.moveToNext());
 
         adapter = new ListTransaksiAdapter(getActivity(),getContext(),listOfTransaction);
@@ -66,7 +66,7 @@ public class HistoriTransaksiFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), DetailTransaksiActivity.class);
                 intent.putExtra("Transaksi", listOfTransaction.get(position));
-                getActivity().startActivityForResult(intent, getResources().getInteger(R.integer.item_update_rq_code));
+                startActivity(intent);
             }
         });
         recList.setAdapter(adapter);

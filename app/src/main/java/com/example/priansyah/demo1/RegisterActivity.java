@@ -1,15 +1,31 @@
 package com.example.priansyah.demo1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.priansyah.demo1.Model.UserCheckResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Priansyah on 3/26/2016.
@@ -51,18 +67,75 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, "data pengguna tidak boleh kosong", Toast.LENGTH_SHORT).show();
         }
         else {
-            SQLiteDatabase db = openOrCreateDatabase("POS", MODE_PRIVATE, null);
-            db.execSQL("Create table if not exists user(store_name VARCHAR, name VARCHAR, email VARCHAR, username VARCHAR, password VARCHAR);");
-
-            Cursor name = db.rawQuery("select * from user where username = '" + editTextUnameRegister.getText() + "' ", null);
-            if (name.getCount()==0) {
-                db.execSQL("insert into user values('" + editTextNamaTokoRegister.getText() + "', '" + editTextNamaUserRegister.getText() + "', '" + editTextEmailRegister.getText() + "', '" + editTextUnameRegister.getText() + "', '" + editTextPasswordRegister.getText() + "')");
-                setResult(RESULT_OK);
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+            if (editTextPasswordRegister.getText().toString().equals(editTextConfirmPasswordRegister.getText().toString())){
+                registerUser();
+                Toast.makeText(RegisterActivity.this, "berhasil daftar", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(RegisterActivity.this,"pengguna telah terdaftar",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "password tidak cocok", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void registerUser() {
+        final String toko = editTextNamaTokoRegister.getText().toString().trim();
+        final String nama = editTextNamaUserRegister.getText().toString().trim();
+        final String email = editTextEmailRegister.getText().toString().trim();
+        final String username = editTextUnameRegister.getText().toString().trim();
+        final String password = editTextPasswordRegister.getText().toString().trim();
+
+        final SQLiteDatabase db = openOrCreateDatabase("POS", MODE_PRIVATE, null);
+        db.execSQL("Create table if not exists user(store_name VARCHAR, name VARCHAR, email VARCHAR, username VARCHAR, password VARCHAR);");
+        final Cursor uname = db.rawQuery("select * from user where username = '" + username + "' ", null);
+        final Cursor mail = db.rawQuery("select * from user where email = '" + email + "' ", null);
+
+        StringRequest request = new StringRequest(Request.Method.GET, getResources().getString(R.string.URL_GET_USERNAME), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("response", response);
+                UserCheckResponse responseModel = MainApplication.gson.fromJson(response, UserCheckResponse.class);
+                //silakan diapa-apain ini responsenya :D
+                if (responseModel.getData().equals(username) || uname.getCount()!=0) {
+                    Toast.makeText(RegisterActivity.this, responseModel.getNotifikasi(), Toast.LENGTH_SHORT).show();
+                }
+                else if (!responseModel.getData().equals(username) || uname.getCount()==0){
+                    StringRequest request2 = new StringRequest(Request.Method.GET, getResources().getString(R.string.URL_GET_USEREMAIL), new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response2) {
+                            Log.d("response2", response2);
+                            UserCheckResponse responseModel2 = MainApplication.gson.fromJson(response2, UserCheckResponse.class);
+                            if (responseModel2.getData().equals(email) || mail.getCount()!=0) {
+                                Toast.makeText(RegisterActivity.this, responseModel2.getNotifikasi(), Toast.LENGTH_SHORT).show();
+                            }
+                            else if (!responseModel2.getData().equals(email) && mail.getCount()==0){
+                                db.execSQL("insert into user values('" + toko + "', '" + nama + "', '" + email + "', '" + username + "', '" + password + "')");
+
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            if (error.networkResponse != null && error.networkResponse.data != null) {
+                                //kalo butuh status codenya
+                                Log.e("Error code", String.valueOf(error.networkResponse.statusCode));
+                                Log.e("Error", new String(error.networkResponse.data));
+                            }
+                        }
+                    });
+                    MainApplication.getInstance().getRequestQueue().add(request2);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse != null && error.networkResponse.data != null) {
+                    //kalo butuh status codenya
+                    Log.e("Error code", String.valueOf(error.networkResponse.statusCode));
+                    Log.e("Error", new String(error.networkResponse.data));
+                }
+            }
+        });
+        MainApplication.getInstance().getRequestQueue().add(request);
     }
 }

@@ -54,8 +54,6 @@ public class TransaksiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarTransaksi);
-        setSupportActionBar(myToolbar);
 
         listOfTransactionDetail = new ArrayList<>();
 
