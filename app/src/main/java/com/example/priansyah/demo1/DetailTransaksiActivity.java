@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,10 @@ public class DetailTransaksiActivity extends AppCompatActivity {
     TextView textViewDiskonTransaksi;
     TextView textViewPajakTransaksi;
     TextView textViewTotalTransaksi;
+    TextView textViewBayarTransaksi;
+    TextView textViewKembalianTransaksi;
     Button buttonRefund;
+    Button buttonReceipt;
     Intent intent;
     Transaksi transaksi;
     SQLiteDatabase dbDetailTransaksi;
@@ -42,6 +46,14 @@ public class DetailTransaksiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_transaksi);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("Detail Transaksi");
+
         intent = getIntent();
         textViewIdTransaksi = (TextView) findViewById(R.id.textViewIdTransaksi);
 //        textViewIdTransaksi.setText(intent.getStringExtra("Transaksi"));
@@ -51,13 +63,16 @@ public class DetailTransaksiActivity extends AppCompatActivity {
         textViewDiskonTransaksi = (TextView) findViewById(R.id.textViewDiskonTransaksi);
         textViewPajakTransaksi = (TextView) findViewById(R.id.textViewPajakTransaksi);
         textViewTotalTransaksi = (TextView) findViewById(R.id.textViewTotalTransaksi);
+        textViewBayarTransaksi = (TextView) findViewById(R.id.textViewBayarTransaksi);
+        textViewKembalianTransaksi = (TextView) findViewById(R.id.textViewKembalianTransaksi);
 
         transaksi = intent.getParcelableExtra("Transaksi");
         buttonRefund = (Button) findViewById(R.id.buttonRefund);
+        buttonReceipt = (Button) findViewById(R.id.buttonReceipt);
 
         dbDetailTransaksi = openOrCreateDatabase("POS", MODE_PRIVATE, null);
-        dbDetailTransaksi.execSQL("Create table if not exists stock_transaction(transaction_id INT, discount INT, tax VARCHAR, date_created VARCHAR);");
-        dbDetailTransaksi.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, price VARCHAR, date_created VARCHAR);");
+        dbDetailTransaksi.execSQL("Create table if not exists stock_transaction(transaction_id INT, total INT, discount INT, tax VARCHAR, date_created VARCHAR, payment INT);");
+        dbDetailTransaksi.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, amount INT, price VARCHAR, date_created VARCHAR);");
 
         recList = (RecyclerView) findViewById(R.id.recViewDetailTransaksi);
         recList.setHasFixedSize(true);
@@ -75,6 +90,19 @@ public class DetailTransaksiActivity extends AppCompatActivity {
                 intent.putExtra("Transaksi", transaksi);
                 startActivity(intent);
 //                startActivityForResult(intent, getResources().getInteger(R.integer.category_edit_rq_code));
+            }
+        });
+
+        buttonReceipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), KirimReceiptActivity.class);
+                intent.putExtra("TOTAL", transaksi.getTextTotalTrans());
+                intent.putExtra("PAYMENT_VALUE", transaksi.getTextJumlahBayar());
+                intent.putExtra("TRANSDETLIST", listOfDetTrans);
+                int change = Integer.parseInt(transaksi.getTextJumlahBayar()) - Integer.parseInt(transaksi.getTextTotalTrans());
+                intent.putExtra("CHANGE", change);
+                startActivity(intent);
             }
         });
 
@@ -96,6 +124,9 @@ public class DetailTransaksiActivity extends AppCompatActivity {
         textViewDiskonTransaksi.setText(transaksi.getTextDiskon());
         textViewPajakTransaksi.setText(transaksi.getTextPajak());
         textViewTotalTransaksi.setText(transaksi.getTextTotalTrans());
+        textViewBayarTransaksi.setText(transaksi.getTextJumlahBayar());
+        int kembalian = Integer.parseInt(transaksi.getTextJumlahBayar()) - Integer.parseInt(transaksi.getTextTotalTrans());
+        textViewKembalianTransaksi.setText(""+ kembalian);
 
     }
 
@@ -108,11 +139,11 @@ public class DetailTransaksiActivity extends AppCompatActivity {
             Log.v("coba", "" + transDet.getCount());
             if (transDet.moveToFirst())
                 do {
-//                    dbDetailTransaksi.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
-//                    Cursor item = dbDetailTransaksi.rawQuery("select name from stock where sku = '" + transDet.getInt(2) + "' ", null);
-//                    String nama = item.getString(0);
-                    if (transDet.moveToFirst())
-                        listOfDetTrans.add(new TransDetail("" + transDet.getInt(0), "nama", transDet.getString(1), transDet.getString(2), transDet.getString(3), transDet.getString(4)));
+                    dbDetailTransaksi.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
+                    Cursor item = dbDetailTransaksi.rawQuery("select name from stock where sku = '" + transDet.getInt(2) + "' ", null);
+                    item.moveToFirst();
+                    String nama = item.getString(0);
+                    listOfDetTrans.add(new TransDetail("" + transDet.getInt(0), transDet.getString(2), nama, transDet.getString(3), transDet.getString(4), transDet.getString(5)));
 //                    Log.v("dalem", "" + transDet.getString(2));
                 } while (transDet.moveToNext());
         }

@@ -3,6 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/textViewNamaDK"
         android:layout_width="wrap_content"
@@ -41,13 +46,15 @@
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:text="edit"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5"
+            android:background="@drawable/button"/>
         <Button
             android:id="@+id/buttonDeleteDK"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:text="Delete"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5"
+            android:background="@drawable/button"/>
     </LinearLayout>
 
 </LinearLayout>

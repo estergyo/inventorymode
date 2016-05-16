@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_first_fragment"
-            android:title="Inventori" />
+            android:title="Inventaris" />
         <!--<item-->
             <!--android:id="@+id/navigation_subheader"-->
             <!--android:title="@string/nav_sub_header">-->
@@ -14,11 +14,12 @@
             android:title="Transaksi Baru" />
         <item
             android:id="@+id/nav_third_fragment"
-            android:title="Histori Transaksi" />
+            android:title="Riwayat Transaksi" />
+
             <!--</menu>-->
         <!--</item>-->
         <item
             android:id="@+id/nav_fourth_fragment"
-            android:title="Logout" />
+            android:title="Keluar" />
     </group>
 </menu>

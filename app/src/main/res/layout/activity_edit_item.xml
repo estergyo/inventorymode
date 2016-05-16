@@ -3,59 +3,67 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <ImageView
         android:id="@+id/imageEditItem"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
-        android:layout_margin="12dp"
+        android:layout_margin="5dp"
         android:scaleType="center" />
     <Button
         android:id="@+id/buttonKameraEI"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_gravity="center"
-        android:text="edit gambar"/>
+        android:text="edit gambar"
+        android:background="@drawable/button"/>
     <EditText
         android:id="@+id/editTextUpdateNamaEI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="5dp"
         android:hint="Nama Produk"/>
     <TextView
         android:layout_width="match_parent"
         android:text="SKU"
         android:id="@+id/textUpdateSKU"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"/>
+        android:layout_margin="5dp"/>
     <EditText
         android:id="@+id/editTextUpdateJumlah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="5dp"
         android:inputType="number"
         android:hint="Jumlah"/>
     <EditText
         android:id="@+id/editTextUpdateHarga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="5dp"
         android:inputType="number"
         android:hint="Harga"/>
     <Spinner
         android:id="@+id/spinnerUpdateSupplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp" />
+        android:layout_margin="5dp" />
     <Spinner
         android:id="@+id/spinnerUpdateKategori"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp" />
+        android:layout_margin="5dp" />
     <Button
         android:id="@+id/buttonUpdateEI"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:text="simpan"/>
+        android:layout_gravity="center|bottom"
+        android:text="simpan"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button"/>
 </LinearLayout>

@@ -3,12 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <EditText
         android:id="@+id/editTextNamaSupplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:hint="Nama Supplier"/>
+        android:hint="Nama"/>
     <EditText
         android:id="@+id/editTextAlamat"
         android:layout_width="match_parent"
@@ -24,9 +29,10 @@
         android:hint="Kontak"/>
     <Button
         android:id="@+id/simpanSupplier"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center"
-        android:text="simpan"/>
+        android:text="simpan"
+        android:background="@drawable/button"/>
 
 </LinearLayout>

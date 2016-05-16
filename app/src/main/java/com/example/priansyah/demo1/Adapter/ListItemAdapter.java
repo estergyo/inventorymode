@@ -53,14 +53,14 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ItemVi
         textSKU = item.getTextSKU();
         textJumlah = item.getTextJumlah();
         textHarga = item.getTextHarga();
-        textKategori = item.getTextKategori();
-        textSupplier = item.getTextSupplier();
+//        textKategori = item.getTextKategori();
+//        textSupplier = item.getTextSupplier();
         holder.textViewNama.setText(textNama);
         holder.textViewSKU.setText(textSKU);
         holder.textViewJumlah.setText(textJumlah);
         holder.textViewHarga.setText(textHarga);
-        holder.textViewSupplier.setText(textSupplier);
-        holder.textViewKategori.setText(textKategori);
+//        holder.textViewSupplier.setText(textSupplier);
+//        holder.textViewKategori.setText(textKategori);
     }
 
     @Override
@@ -85,8 +85,8 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ItemVi
             textViewSKU = (TextView) v.findViewById(R.id.text_item_sku);
             textViewJumlah = (TextView) v.findViewById(R.id.text_item_jumlah);
             textViewHarga = (TextView) v.findViewById(R.id.text_item_harga);
-            textViewSupplier = (TextView) v.findViewById(R.id.text_item_supplier);
-            textViewKategori = (TextView) v.findViewById(R.id.text_item_kategori);
+//            textViewSupplier = (TextView) v.findViewById(R.id.text_item_supplier);
+//            textViewKategori = (TextView) v.findViewById(R.id.text_item_kategori);
             v.setOnClickListener(this);
         }
 

@@ -13,6 +13,7 @@ public class Transaksi implements Parcelable {
     private String textPajak;
     private String textTanggalTrans;
     private String textTotalTrans;
+    private String textJumlahBayar;
 
     public Transaksi(){
         textTransId = "";
@@ -20,18 +21,20 @@ public class Transaksi implements Parcelable {
         textDiskon = "";
         textPajak = "";
         textTanggalTrans = "";
+        textJumlahBayar = "";
     }
 
-    public Transaksi(String textTransId, String textTotalTrans, String textDiskon, String textPajak, String textTanggalTrans){
+    public Transaksi(String textTransId, String textTotalTrans, String textDiskon, String textPajak, String textTanggalTrans, String textJumlahBayar){
         this.textTransId = textTransId;
         this.textTotalTrans = textTotalTrans;
         this.textDiskon = textDiskon;
         this.textPajak = textPajak;
         this.textTanggalTrans = textTanggalTrans;
+        this.textJumlahBayar = textJumlahBayar;
     }
 
     public Transaksi(Parcel in){
-        String[] data = new String[5];
+        String[] data = new String[6];
 
         in.readStringArray(data);
         this.textTransId = data[0];
@@ -39,6 +42,7 @@ public class Transaksi implements Parcelable {
         this.textDiskon = data[2];
         this.textPajak = data[3];
         this.textTanggalTrans = data[4];
+        this.textJumlahBayar = data[5];
     }
 
     @Override
@@ -53,7 +57,7 @@ public class Transaksi implements Parcelable {
                 this.textDiskon,
                 this.textPajak,
                 this.textTanggalTrans,
-//                textTotalTrans
+                this.textJumlahBayar,
         });
     }
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
@@ -96,6 +100,14 @@ public class Transaksi implements Parcelable {
 
     public void setTextTanggalTrans(String textTanggalTrans) {
         this.textTanggalTrans = textTanggalTrans;
+    }
+
+    public String getTextJumlahBayar() {
+        return textJumlahBayar;
+    }
+
+    public void setTextJumlahBayar(String textJumlahBayar) {
+        this.textJumlahBayar = textJumlahBayar;
     }
 
     public String getTextTotalTrans() {

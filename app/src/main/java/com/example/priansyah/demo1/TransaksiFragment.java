@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.priansyah.demo1.Adapter.ListDetilTransaksiAdapter;
 import com.example.priansyah.demo1.Adapter.SearchItemAdapter;
@@ -84,9 +85,14 @@ public class TransaksiFragment extends Fragment {
         buttonLanjutTransaksi = (Button) getActivity().findViewById(R.id.buttonLanjutTransaksi);
         buttonLanjutTransaksi.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getBaseContext(), DiskonActivity.class);
-                intent.putExtra("TRANSDETLIST", listOfTransactionDetail);
-                startActivity(intent);
+                if (listOfTransactionDetail.size() == 0) {
+                    Toast.makeText(getActivity(), "Tidak ada barang yang dipilih", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(getActivity().getBaseContext(), DiskonActivity.class);
+                    intent.putExtra("TRANSDETLIST", listOfTransactionDetail);
+                    startActivity(intent);
+                }
             }
         });
         dbSearchItem = getActivity().openOrCreateDatabase("POS", getActivity().MODE_PRIVATE, null);
@@ -275,6 +281,7 @@ public class TransaksiFragment extends Fragment {
 //                getActivity().startActivityForResult(intent, getResources().getInteger(R.integer.item_update_rq_code));
 //            }
 //        });
+        recList.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recList.setAdapter(adapter);
     }
 }

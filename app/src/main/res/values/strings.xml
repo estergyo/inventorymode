@@ -39,6 +39,10 @@
     <string name="pilih_item_transaksi">Pilih Item Transaksi</string>
     <string name="detail_transaksi">Detail Transaksi</string>
     <string name="refund">Refund</string>
+    <string name="pembayaran">Pembayaran</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="home">Home</string>
 
     <string name="drawer_open">drawer open</string>
     <string name="drawer_close">drawer close</string>

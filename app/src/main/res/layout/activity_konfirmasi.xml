@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="9">
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Pembayaran"-->
+            <!--android:textSize="14dp"-->
+            <!--android:id="@+id/pembayaranText" />-->
+        <!--<EditText-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="number"-->
+            <!--android:ems="10"-->
+            <!--android:id="@+id/nominal" />-->
+    <!--</LinearLayout>-->
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
+        android:weightSum="2">
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pembayaran"
-                android:textSize="14dp"
-                android:id="@+id/pembayaranText" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/nominal" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="match_parent"
+            android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,7 +43,6 @@
                 android:textSize="14dp"
                 android:layout_marginRight="40dp"
                 android:id="@+id/tanggalText" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,25 +52,62 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/listViewItemKonfirmasi"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="4">
+            <TextView
+                android:layout_width="0dp"
+                android:text="No"
+                android:id="@+id/text_transdetail_trans_id"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="0dp"
+                android:text="nama"
+                android:id="@+id/text_transdetail_nama"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="0dp"
+                android:text="Jumlah"
+                android:id="@+id/text_transdetail_jumlah"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="0dp"
+                android:text="Harga"
+                android:id="@+id/text_transdetail_harga"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
         </LinearLayout>
-        <LinearLayout
-        android:orientation="horizontal"
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2">
-
+        android:layout_height="0dp"
+        android:layout_weight="5">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listViewItemKonfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.8"
+        android:orientation="vertical"
+        android:weightSum="3">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="2">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Diskon"
                 android:id="@+id/textviewDisc"
                 android:layout_weight="1"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,15 +118,14 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="2">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="pajak"
                 android:layout_weight="1"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,16 +136,15 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="2">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total"
                 android:id="@+id/textViewTotal"
                 android:layout_weight="1"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,12 +153,19 @@
                 android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14dp"
-        android:text="LANJUT"
-        android:id="@+id/buttonLanjutKonfirmasi"
-        android:layout_gravity="center_horizontal|center"
-        android:layout_marginBottom="10dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="14dp"
+            android:text="LANJUT"
+            android:id="@+id/buttonLanjutKonfirmasi"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button"/>
+    </LinearLayout>
 </LinearLayout>

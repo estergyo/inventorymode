@@ -7,12 +7,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.priansyah.demo1.Adapter.ListItemAdapter;
 import com.example.priansyah.demo1.Entity.Item;
@@ -36,6 +41,14 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilih_item_transaksi);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("Pilih Barang");
+
         dbListItem = openOrCreateDatabase("POS",MODE_PRIVATE, null);
         recList = (RecyclerView) findViewById(R.id.listViewItem);
         recList.setHasFixedSize(true);
@@ -50,7 +63,7 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
             if(items.moveToFirst())
                 do{
                     listOfItems.add(new Item(items.getString(1),items.getString(0),""+0,""+items.getInt(3),items.getString(5),items.getString(4),items.getString(6)));
-                }while(items.moveToNext());
+    }while(items.moveToNext());
 
         setList();
 
@@ -58,10 +71,25 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
         buttonTambahKeList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("PILIHITEMLIST", listOfItems);
-                setResult(RESULT_OK, intent);
-                finish();
+                int counter = 0;
+                for (int i=0; i<listOfItems.size(); i++) {
+                    int jml = Integer.parseInt(listOfItems.get(i).getTextJumlah());
+                    if (jml != 0) {
+                        counter++;
+                    }
+                }
+                if (listOfItems.size() == 0) {
+                    Toast.makeText(PilihItemTransaksiActivity.this, "Tidak ada barang yang bisa dipilih", Toast.LENGTH_SHORT).show();
+                }
+                else if (counter == 0) {
+                    Toast.makeText(PilihItemTransaksiActivity.this, "Daftar barang masih kosong", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent();
+                    intent.putExtra("PILIHITEMLIST", listOfItems);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
             }
         });
     }
@@ -100,15 +128,28 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
                         // TODO Auto-generated method stub
                         EditText editTextJumlahItemTransaksi = (EditText)popupView.findViewById(R.id.editTextJumlahItemTransaksi);
                         int jumlah = Integer.parseInt(editTextJumlahItemTransaksi.getText().toString());
-                        listOfItems.get(position).setTextJumlah((Integer.parseInt(listOfItems.get(position).getTextJumlah()) + jumlah) +"");
-                        setList();
+                        String sku = listOfItems.get(position).getTextSKU().toString();
+                        Cursor items = dbListItem.rawQuery("select amount from stock where sku= '" + sku + "' ", null);
+                        items.moveToFirst();
+                        int jumlahStok = Integer.parseInt(items.getString(0));
+                        Log.d("jmlstok", ""+jumlahStok);
+                        if (jumlah > jumlahStok || (jumlah + Integer.parseInt(listOfItems.get(position).getTextJumlah())) > jumlahStok) {
+                            Toast.makeText(PilihItemTransaksiActivity.this, "Jumlah melebihi barang tersedia", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            listOfItems.get(position).setTextJumlah((Integer.parseInt(listOfItems.get(position).getTextJumlah()) + jumlah) +"");
+                            setList();
+                        }
                         popupWindow.dismiss();
                     }
                 });
 
-                popupWindow.showAsDropDown(view, 50, -30);
+                popupWindow.showAsDropDown(view, 50, -50);
+//                popupWindow.showAtLocation(view,  Gravity.CENTER, 0, 0);
             }
         });
+
+        recList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recList.setAdapter(adapter);
     }
 }

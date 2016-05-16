@@ -3,12 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="4">
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_above="@+id/buttonLanjutDiskon"
-        android:layout_weight="3.5"
+        android:layout_weight="3"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -89,15 +93,19 @@
 
         </LinearLayout>
     </LinearLayout>
-
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textSize="14dp"
-        android:layout_gravity="bottom"
-        android:layout_weight="0.5"
-        android:text="LANJUT"
-        android:id="@+id/buttonLanjutDiskon"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"/>
+        android:layout_weight="1"
+        android:gravity="center">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_gravity="center|bottom"
+            android:text="LANJUT"
+            android:id="@+id/buttonLanjutDiskon"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button"/>
+    </LinearLayout>
 </LinearLayout>

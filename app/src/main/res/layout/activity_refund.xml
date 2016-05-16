@@ -1,30 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alasan Refund"
-        android:layout_marginTop="30dp" />
-    <EditText
-        android:id="@+id/editTextAlasanRefund"
+    android:layout_height="match_parent"
+    android:weightSum="5">
+    <include
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="tuliskan alasan refund disini"
-        android:layout_margin="6dp" />
-    <EditText
-        android:id="@+id/editTextNilaiRefund"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="tuliskan nilai refund disini"
-        android:layout_margin="6dp"
-        android:inputType="number"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="proses"
-        android:layout_gravity="center"
-        android:id="@+id/buttonProsesRefund"/>
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:text="Jumlah pengembalian dana"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="IDR"
+            android:layout_weight="1"
+            android:id="@+id/textViewJumlahRefund"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="3"
+        android:gravity="center_horizontal|top" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alasan pengembalian"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            android:textSize="10pt"/>
+        <!--<EditText-->
+            <!--android:id="@+id/editTextAlasanRefund"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="tuliskan alasan refund disini"-->
+            <!--android:layout_margin="6dp" />-->
+        <!--<EditText-->
+            <!--android:id="@+id/editTextNilaiRefund"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="tuliskan nilai refund disini"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:inputType="number"/>-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left">
+            <RadioGroup
+                android:id="@+id/radioGroupAlasan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <RadioButton
+                    android:id="@+id/radioAlasan1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Barang rusak"/>
+
+                <RadioButton
+                    android:id="@+id/radioAlasan2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Barang tidak sesuai" />
+
+                <RadioButton
+                    android:id="@+id/radioAlasan3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="alasan lain:"/>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/editTextAlasan3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lalala"
+                android:layout_alignBottom="@+id/radioGroupAlasan"
+                android:layout_toRightOf="@id/radioGroupAlasan"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="bottom">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="proses"
+            android:gravity="center"
+            android:layout_gravity= "center|bottom"
+            android:id="@+id/buttonProsesRefund"
+            android:background="@drawable/button"
+            android:layout_marginBottom="5dp"/>
+    </LinearLayout>
 
 </LinearLayout>

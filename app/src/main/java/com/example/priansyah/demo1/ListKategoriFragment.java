@@ -85,6 +85,8 @@ public class ListKategoriFragment extends Fragment {
                 getParentFragment().startActivityForResult(intent, getResources().getInteger(R.integer.category_update_rq_code));
             }
         });
+
+        recList.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recList.setAdapter(adapter);
     }
 

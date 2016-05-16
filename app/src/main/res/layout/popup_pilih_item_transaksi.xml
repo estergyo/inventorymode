@@ -32,17 +32,21 @@ android:background="@android:color/background_light">
                 android:orientation="horizontal"
                 android:weightSum="2">
                 <Button
-                    android:id="@+id/buttonLanjutPopup"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="lanjut"
-                    android:layout_weight="1"/>
-                <Button
                     android:id="@+id/buttonBatalPopup"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="batal"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:layout_marginRight="2dp"/>
+                <Button
+                    android:id="@+id/buttonLanjutPopup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="lanjut"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:layout_marginLeft="2dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

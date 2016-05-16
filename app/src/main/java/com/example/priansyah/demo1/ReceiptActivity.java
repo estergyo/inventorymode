@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.example.priansyah.demo1.Adapter.ListDetilTransaksiAdapter;
 import com.example.priansyah.demo1.Adapter.ListItemAdapter;
 import com.example.priansyah.demo1.Entity.Item;
 import com.example.priansyah.demo1.Entity.TransDetail;
+import com.example.priansyah.demo1.Entity.Transaksi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +34,7 @@ public class ReceiptActivity extends AppCompatActivity {
     TextView textViewBayarRcp;
     TextView textViewKembalianRcp;
     Button buttonKirim;
+    Button buttonSelesai;
     double total;
     double paymentValue;
     double change;
@@ -41,9 +44,18 @@ public class ReceiptActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("Struk");
         textViewBayarRcp = (TextView) findViewById(R.id.textViewBayarRcp);
         textViewKembalianRcp = (TextView) findViewById(R.id.textViewKembalianRcp);
         buttonKirim = (Button) findViewById(R.id.buttonKirim);
+        buttonSelesai = (Button) findViewById(R.id.buttonSelesai);
 
         recList = (RecyclerView) findViewById(R.id.listViewItemReceipt);
         recList.setHasFixedSize(true);
@@ -84,5 +96,13 @@ public class ReceiptActivity extends AppCompatActivity {
             }
         });
 
+        buttonSelesai.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ReceiptActivity.this, HomeActivity.class);
+                intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                intent.putExtra("from",1);
+                startActivity(intent);
+            }
+        });
     }
 }

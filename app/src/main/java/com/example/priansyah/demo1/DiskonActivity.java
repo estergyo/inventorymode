@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.priansyah.demo1.Entity.Item;
 import com.example.priansyah.demo1.Entity.TransDetail;
@@ -32,6 +33,14 @@ public class DiskonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diskon);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("Diskon");
 
         radioGroupDiskon = (RadioGroup) findViewById(R.id.myRadioGroup);
         radioDisc1 = (RadioButton) findViewById(R.id.radioDisc1);

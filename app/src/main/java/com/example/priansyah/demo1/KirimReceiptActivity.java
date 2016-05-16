@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.priansyah.demo1.Entity.TransDetail;
@@ -34,6 +36,14 @@ public class KirimReceiptActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kirim_receipt);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("Media kirim Struk");
 
         editTextEmailPembeli = (EditText) findViewById(R.id.editTextEmailPembeli);
         editTextPonselPembeli = (EditText) findViewById(R.id.editTextPonselPembeli);
@@ -99,12 +109,14 @@ public class KirimReceiptActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
 
         listOfTransactionDetail = getIntent().getParcelableArrayListExtra("TRANSDETLIST");
+        textBody = "Transaksi tanggal " + listOfTransactionDetail.get(listOfTransactionDetail.size()-1).getTextTanggalTrans() + "\n";
+        textBody += "ID \t Nama \t\t Jumlah \t Harga \n";
         for (int i=0; i<listOfTransactionDetail.size(); i++) {
             textBody += listOfTransactionDetail.get(i).getTextTransId() + "\t" +
-                    listOfTransactionDetail.get(i).getTextNama() + "\t" +
+                    listOfTransactionDetail.get(i).getTextNama() + "\t\t" +
                     listOfTransactionDetail.get(i).getTextJumlah() + "\t" +
-                    listOfTransactionDetail.get(i).getTextHarga() + "\t" +
-                    listOfTransactionDetail.get(i).getTextTanggalTrans() + "\t" +
+                    listOfTransactionDetail.get(i).getTextHarga() +
+//                    listOfTransactionDetail.get(i).getTextTanggalTrans() + "\t" +
                      "\n";
         }
         textBody += "Total: \t" + total + "\n" +

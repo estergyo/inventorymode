@@ -3,6 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/textViewNamaDI"
         android:layout_width="wrap_content"
@@ -125,12 +130,14 @@
             android:id="@+id/buttonEditDI"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:background="@drawable/button"
             android:text="edit"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5" />
         <Button
             android:id="@+id/buttonDeleteDI"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:background="@drawable/button"
             android:text="Delete"
             android:layout_weight="0.5"/>
     </LinearLayout>

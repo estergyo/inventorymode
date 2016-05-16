@@ -51,12 +51,12 @@ public class ListDetilTransaksiAdapter extends RecyclerView.Adapter<ListDetilTra
         textNama = detilTransaksi.getTextNama();
         textJumlah = detilTransaksi.getTextJumlah();
         textHarga = detilTransaksi.getTextHarga();
-        textTanggalTrans = detilTransaksi.getTextTanggalTrans();
+//        textTanggalTrans = detilTransaksi.getTextTanggalTrans();
         holder.textViewTransId.setText(textTransId);
         holder.textViewNama.setText(textNama);
         holder.textViewJumlah.setText(textJumlah);
         holder.textViewHarga.setText(textHarga);
-        holder.textViewTanggalTrans.setText(textTanggalTrans);
+//        holder.textViewTanggalTrans.setText(textTanggalTrans);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ListDetilTransaksiAdapter extends RecyclerView.Adapter<ListDetilTra
         protected TextView textViewNama;
         protected TextView textViewJumlah;
         protected TextView textViewHarga;
-        protected TextView textViewTanggalTrans;
+//        protected TextView textViewTanggalTrans;
 
         public DetilTransaksiViewHolder(View v) {
             super(v);
@@ -80,7 +80,7 @@ public class ListDetilTransaksiAdapter extends RecyclerView.Adapter<ListDetilTra
             textViewNama = (TextView) v.findViewById(R.id.text_transdetail_nama);
             textViewJumlah = (TextView) v.findViewById(R.id.text_transdetail_jumlah);
             textViewHarga = (TextView) v.findViewById(R.id.text_transdetail_harga);
-            textViewTanggalTrans = (TextView) v.findViewById(R.id.text_transdetail_tanggal);
+//            textViewTanggalTrans = (TextView) v.findViewById(R.id.text_transdetail_tanggal);
             v.setOnClickListener(this);
         }
 

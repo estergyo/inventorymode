@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MyMaterialTheme">
         <activity android:name=".MainActivity"
                   android:label="@string/inventory">
             <intent-filter>
@@ -84,13 +84,17 @@
             android:label="@string/refund">
         </activity>
         <activity android:name=".LoginActivity"
-            android:label="@string/refund">
+            android:label="@string/login">
         </activity>
         <activity android:name=".RegisterActivity"
-            android:label="@string/refund">
+            android:label="@string/register">
         </activity>
         <activity android:name=".HomeActivity"
-            android:label="@string/refund">
+            android:label="@string/home"
+            >
+        </activity>
+        <activity android:name=".PembayaranActivity"
+            android:label="@string/pembayaran">
         </activity>
 
     </application>

@@ -42,6 +42,7 @@ public class InventoryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_inventory, container, false);
 
     }
@@ -50,8 +51,8 @@ public class InventoryFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+//        toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         setupViewPager();
@@ -62,8 +63,8 @@ public class InventoryFragment extends Fragment {
         tabLayout = (TabLayout) getActivity().findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setText("Item");
-        tabLayout.getTabAt(1).setText("Category");
+        tabLayout.getTabAt(0).setText("Barang");
+        tabLayout.getTabAt(1).setText("Kategori");
         tabLayout.getTabAt(2).setText("Supplier");
         tabLayout.getTabAt(0).select();
 
@@ -85,6 +86,11 @@ public class InventoryFragment extends Fragment {
 //        inflater.inflate(R.menu.menu_main, menu);
 ////        return true;
 //    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

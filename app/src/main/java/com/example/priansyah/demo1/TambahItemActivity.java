@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,8 +42,9 @@ public class TambahItemActivity extends AppCompatActivity{
     Spinner spinnerSupplier;
     Spinner spinnerKategori;
     Button buttonSimpan;
-    Button buttonKameraTI;
-    ImageView imageTambahItem;
+//    Button buttonKameraTI;
+//    ImageView imageTambahItem;
+    ImageButton imageButtonTambahItem;
 
     SQLiteDatabase db;
     
@@ -49,6 +52,14 @@ public class TambahItemActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_item);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("Tambah Barang");
 
         editTextNama = (EditText) findViewById(R.id.editTextNamaProduk);
         editTextHarga = (EditText) findViewById(R.id.editTextHarga);
@@ -59,10 +70,19 @@ public class TambahItemActivity extends AppCompatActivity{
         spinnerSupplier = (Spinner) findViewById(R.id.spinnerSupplier);
 
         buttonSimpan = (Button) findViewById(R.id.simpanItem);
-        buttonKameraTI = (Button) findViewById(R.id.buttonKameraTI);
-        imageTambahItem = (ImageView) findViewById(R.id.imageTambahItem);
+//        buttonKameraTI = (Button) findViewById(R.id.buttonKameraTI);
+//        imageTambahItem = (ImageView) findViewById(R.id.imageTambahItem);
+        imageButtonTambahItem = (ImageButton) findViewById(R.id.imageButtonTambahItem);
 
-        buttonKameraTI.setOnClickListener(new View.OnClickListener() {
+//        buttonKameraTI.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(intent, 0);
+//            }
+//        });
+
+        imageButtonTambahItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -137,7 +157,15 @@ public class TambahItemActivity extends AppCompatActivity{
         buttonSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkInput();
+                if(spinnerKategori.getAdapter().getCount() == 0) {
+                    Toast.makeText(TambahItemActivity.this,"Tambah kategori terlebih dahulu",Toast.LENGTH_SHORT).show();
+                }
+                else if (spinnerSupplier.getAdapter().getCount() == 0) {
+                    Toast.makeText(TambahItemActivity.this,"Tambah supplier terlebih dahulu",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    checkInput();
+                }
             }
         });
     }
@@ -147,7 +175,8 @@ public class TambahItemActivity extends AppCompatActivity{
         super.onActivityResult(requestCode, resultCode, data);
         if(data != null) {
             Bitmap bp = (Bitmap) data.getExtras().get("data");
-            imageTambahItem.setImageBitmap(bp);
+//            imageTambahItem.setImageBitmap(bp);
+            imageButtonTambahItem.setImageBitmap(bp);
         }
     }
 
@@ -173,13 +202,13 @@ public class TambahItemActivity extends AppCompatActivity{
     }
 
     public void checkInput() {
-        if (editTextNama.getText().toString().equals("") || editTextSKU.getText().toString().equals("") || editTextHarga.getText().toString().equals("") ||editTextJumlah.getText().toString().equals("") || imageTambahItem.getDrawable()== null) {
+        if (editTextNama.getText().toString().equals("") || editTextSKU.getText().toString().equals("") || editTextHarga.getText().toString().equals("") ||editTextJumlah.getText().toString().equals("") || imageButtonTambahItem.getDrawable()== null) {
             Toast.makeText(TambahItemActivity.this,"data produk tidak boleh kosong",Toast.LENGTH_SHORT).show();
         }
         else {
             Cursor name = db.rawQuery("select * from stock where sku = '" + editTextSKU.getText() + "' ", null);
             if (name.getCount()==0) {
-                db.execSQL("insert into stock values('"+editTextSKU.getText()+"', '"+editTextNama.getText()+"', "+editTextJumlah.getText()+", "+editTextHarga.getText()+", '"+spinnerKategori.getSelectedItem().toString()+"', '"+spinnerSupplier.getSelectedItem().toString()+"', '"+ encodeTobase64(((BitmapDrawable)imageTambahItem.getDrawable()).getBitmap()) +"')");
+                db.execSQL("insert into stock values('"+editTextSKU.getText()+"', '"+editTextNama.getText()+"', "+editTextJumlah.getText()+", "+editTextHarga.getText()+", '"+spinnerKategori.getSelectedItem().toString()+"', '"+spinnerSupplier.getSelectedItem().toString()+"', '"+ encodeTobase64(((BitmapDrawable)imageButtonTambahItem.getDrawable()).getBitmap()) +"')");
                 setResult(RESULT_OK);
                 finish();
             }else{

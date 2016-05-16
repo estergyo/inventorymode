@@ -3,27 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="5">
-    <LinearLayout
-        android:orientation="horizontal"
+    <include
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:gravity="center">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button"
-            android:layout_gravity="center" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listViewItemReceipt"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.5"/>
+        android:layout_weight="4"
+        android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -67,10 +57,32 @@
             android:id="@+id/textViewKembalianRcp"
             android:layout_weight="1"/>
     </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonKirim"
-        android:layout_gravity="center"
-        android:text="kirim receipt"/>
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="45dp"
+            android:id="@+id/buttonKirim"
+            android:layout_gravity="center|bottom"
+            android:text="kirim struk"
+            android:background="@drawable/button"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="5dp"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="45dp"
+            android:id="@+id/buttonSelesai"
+            android:layout_gravity="center|bottom"
+            android:text="selesai"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button"/>
+    </LinearLayout>
+
 </LinearLayout>

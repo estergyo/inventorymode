@@ -21,8 +21,9 @@ public class ListTransaksiAdapter extends RecyclerView.Adapter<ListTransaksiAdap
     Context context;
     ArrayList<Transaksi> listOfTransaction;
 
-    String textTransId;
+//    String textTransId;
     String textTanggalTrans;
+    ArrayList<Transaksi> listOfTransaction2;
 
     OnItemClickListener mItemClickListener;
 
@@ -43,9 +44,9 @@ public class ListTransaksiAdapter extends RecyclerView.Adapter<ListTransaksiAdap
     @Override
     public void onBindViewHolder(TransaksiViewHolder holder, int position) {
         final Transaksi transaksi = listOfTransaction.get(position);
-        textTransId = transaksi.getTextTransId();
+//        textTransId = transaksi.getTextTransId();
         textTanggalTrans = transaksi.getTextTanggalTrans();
-        holder.textViewTransId.setText(textTransId);
+//        holder.textViewTransId.setText(textTransId);
         holder.textViewTanggalTrans.setText(textTanggalTrans);
     }
 
@@ -63,8 +64,8 @@ public class ListTransaksiAdapter extends RecyclerView.Adapter<ListTransaksiAdap
 
         public TransaksiViewHolder(View v) {
             super(v);
-            textViewTransId = (TextView) v.findViewById(R.id.text_transaksi_trans_id);
-            textViewTanggalTrans = (TextView) v.findViewById(R.id.text_transaksi_tanggal);
+//            textViewTransId = (TextView) v.findViewById(R.id.text_transaksi_trans_id);
+//            textViewTanggalTrans = (TextView) v.findViewById(R.id.text_transaksi_tanggal);
             v.setOnClickListener(this);
         }
 

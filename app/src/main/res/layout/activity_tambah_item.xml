@@ -3,60 +3,72 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageTambahItem"
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageButton
+        android:id="@+id/imageButtonTambahItem"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_margin="12dp"
-        android:scaleType="center" />
-    <Button
-        android:id="@+id/buttonKameraTI"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:text="tambah gambar"/>
+        android:layout_margin="6dp"
+        android:src="@drawable/camera"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="#00000000"
+        />
+    <!--<Button-->
+        <!--android:id="@+id/buttonKameraTI"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:text="tambah gambar"/>-->
     <EditText
         android:id="@+id/editTextNamaProduk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:hint="Nama Produk"/>
+        android:layout_margin="5dp"
+        android:hint="Nama Produk"
+        android:singleLine="true"/>
     <EditText
         android:id="@+id/editTextSKU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="5dp"
         android:inputType="number"
         android:hint="SKU"/>
     <EditText
         android:id="@+id/editTextJumlah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="5dp"
         android:inputType="number"
         android:hint="Jumlah"/>
     <EditText
         android:id="@+id/editTextHarga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="5dp"
         android:inputType="number"
         android:hint="Harga"/>
     <Spinner
         android:id="@+id/spinnerSupplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp" />
+        android:layout_margin="5dp" />
     <Spinner
         android:id="@+id/spinnerKategori"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp" />
+        android:layout_margin="5dp" />
     <Button
         android:id="@+id/simpanItem"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:text="simpan"/>
+        android:layout_gravity="center|bottom"
+        android:text="simpan"
+        android:background="@drawable/button"
+        android:layout_marginBottom="5dp"/>
 </LinearLayout>

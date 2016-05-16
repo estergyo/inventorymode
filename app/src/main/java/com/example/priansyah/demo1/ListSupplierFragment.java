@@ -85,6 +85,8 @@ public class ListSupplierFragment extends Fragment {
                 getParentFragment().startActivityForResult(intent, getResources().getInteger(R.integer.supplier_update_rq_code));
             }
         });
+
+        recList.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recList.setAdapter(adapter);
     }
 

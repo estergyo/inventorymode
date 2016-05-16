@@ -3,6 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,11 +69,12 @@
             android:id="@+id/editTextPonselPembeli"/>
     </LinearLayout>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:text="kirim"
         android:layout_marginTop="12dp"
-        android:id="@+id/buttonKirimReceipt"/>
+        android:id="@+id/buttonKirimReceipt"
+        android:background="@drawable/button"/>
 
 </LinearLayout>

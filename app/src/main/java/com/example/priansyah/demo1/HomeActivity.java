@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // Find our drawer view
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -59,8 +60,22 @@ public class HomeActivity extends AppCompatActivity {
         TextView headerText = (TextView) header.findViewById(R.id.textViewHeader);
         headerText.setText(name);
         setupDrawerContent(nvDrawer);
-        if (savedInstanceState == null) {
-            nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
+//        if (savedInstanceState == null) {
+//            nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
+//        }
+        switch (getIntent().getIntExtra("from",0)){
+            case 1:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_second_fragment, 0);
+                break;
+            case 2:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_third_fragment, 0);
+                break;
+            case 3:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_fourth_fragment, 0);
+                break;
+            default:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
+                break;
         }
     }
 
@@ -119,7 +134,9 @@ public class HomeActivity extends AppCompatActivity {
         // Highlight the selected item, update the title, and close the drawer
         // Highlight the selected item has been done by NavigationView
 //         menuItem.setChecked(true);
-        getSupportActionBar().setTitle(menuItem.getTitle());
+//        getSupportActionBar().setTitle(menuItem.getTitle());
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText(menuItem.getTitle());
         mDrawer.closeDrawers();
 
     }

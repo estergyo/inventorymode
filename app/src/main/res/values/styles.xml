@@ -1,17 +1,33 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--   your app branding color for the app bar -->
-        <item name="colorPrimary">#3F51B5</item>
-        <!--   darker variant for the status bar and contextual app bars -->
-        <item name="colorPrimaryDark">#303F9F</item>
-        <!--   theme UI controls like checkboxes and text fields -->
-        <item name="colorAccent">#FF4081</item>
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--&lt;!&ndash;   your app branding color for the app bar &ndash;&gt;-->
+        <!--<item name="colorPrimary">#3F51B5</item>-->
+        <!--&lt;!&ndash;   darker variant for the status bar and contextual app bars &ndash;&gt;-->
+        <!--<item name="colorPrimaryDark">#303F9F</item>-->
+        <!--&lt;!&ndash;   theme UI controls like checkboxes and text fields &ndash;&gt;-->
+        <!--<item name="colorAccent">#FF4081</item>-->
+    <!--</style>-->
+
+    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
+
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/windowBackground</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="MyMaterialTheme.Base" />
+    <style name="AppTheme.PopupOverlay" parent="MyMaterialTheme.Base" />
 
 </resources>

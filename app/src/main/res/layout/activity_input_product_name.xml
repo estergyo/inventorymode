@@ -1,11 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
     tools:context="com.example.acer.barcodescanner.InputProductName"
     android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_gravity="center"
-        android:text="tambah gambar"/>
+        android:text="tambah gambar"
+        android:background="@drawable/button"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +44,6 @@
             android:layout_height="wrap_content"
             android:text="nama produk"
             android:id="@+id/textViewNamaProduk"
-            android:layout_marginBottom="35dp"
             android:layout_weight="0.3"/>
 
         <EditText
@@ -62,7 +64,6 @@
             android:layout_height="wrap_content"
             android:text="harga produk"
             android:id="@+id/textViewHargaProduk"
-            android:layout_marginBottom="35dp"
             android:layout_weight="0.3"/>
 
         <EditText
@@ -78,18 +79,20 @@
         android:id="@+id/spinnerSupplierIPN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp" />
+        android:layout_margin="5dp" />
     <Spinner
         android:id="@+id/spinnerKategoriIPN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp" />
+        android:layout_margin="5dp" />
 
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:text="Simpan"
         android:id="@+id/buttonSimpanScan"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button"/>
 </LinearLayout>
