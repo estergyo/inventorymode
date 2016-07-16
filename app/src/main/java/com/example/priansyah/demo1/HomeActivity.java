@@ -3,6 +3,7 @@ package com.example.priansyah.demo1;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -54,16 +56,15 @@ public class HomeActivity extends AppCompatActivity {
 
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
-        View header = LayoutInflater.from(this).inflate(R.layout.nav_header, null);
-
-        nvDrawer.addHeaderView(header);
+//        View header = LayoutInflater.from(this).inflate(R.layout.nav_header, null);
+        View header = nvDrawer.inflateHeaderView(R.layout.nav_header);
         TextView headerText = (TextView) header.findViewById(R.id.textViewHeader);
         headerText.setText(name);
         setupDrawerContent(nvDrawer);
 //        if (savedInstanceState == null) {
 //            nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
 //        }
-        switch (getIntent().getIntExtra("from",0)){
+        switch (getIntent().getIntExtra("from", 0)) {
             case 1:
                 nvDrawer.getMenu().performIdentifierAction(R.id.nav_second_fragment, 0);
                 break;
@@ -73,6 +74,24 @@ public class HomeActivity extends AppCompatActivity {
             case 3:
                 nvDrawer.getMenu().performIdentifierAction(R.id.nav_fourth_fragment, 0);
                 break;
+            case 4:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_fifth_fragment, 0);
+                break;
+            case 5:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_sixth_fragment, 0);
+                break;
+            case 7:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_eighth_fragment, 0);
+                break;
+            case 8:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_ninth_fragment, 0);
+                break;
+            case 9:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_tenth_fragment, 0);
+                break;
+            case 10:
+                nvDrawer.getMenu().performIdentifierAction(R.id.nav_eleventh_fragment, 0);
+                break;
             default:
                 nvDrawer.getMenu().performIdentifierAction(R.id.nav_first_fragment, 0);
                 break;
@@ -80,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open,  R.string.drawer_close);
+        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -100,20 +119,48 @@ public class HomeActivity extends AppCompatActivity {
         // position
         Fragment fragment = null;
         Class fragmentClass;
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 fragmentClass = InventoryFragment.class;
-                Log.d("title",menuItem.getTitle()+"");
+                Log.d("title", menuItem.getTitle() + "");
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = TransaksiFragment.class;
-                Log.d("title",menuItem.getTitle()+"");
+                Log.d("title", menuItem.getTitle() + "");
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = HistoriTransaksiFragment.class;
-                Log.d("title",menuItem.getTitle()+"");
+                Log.d("title", menuItem.getTitle() + "");
                 break;
             case R.id.nav_fourth_fragment:
+                fragmentClass = LisensiFragment.class;
+                Log.d("title", menuItem.getTitle() + "");
+                break;
+            case R.id.nav_fifth_fragment:
+                fragmentClass = FaqFragment.class;
+                Log.d("title", menuItem.getTitle() + "");
+                break;
+            case R.id.nav_sixth_fragment:
+                fragmentClass = BantuanFragment.class;
+                Log.d("title", menuItem.getTitle() + "");
+                break;
+            case R.id.nav_seventh_fragment:
+                fragmentClass = PanduanFragment.class;
+                Log.d("title", menuItem.getTitle() + "");
+                break;
+            case R.id.nav_eighth_fragment:
+                fragmentClass = PengaturanFragment.class;
+                Log.d("title", menuItem.getTitle() + "");
+                break;
+            case R.id.nav_ninth_fragment:
+                fragmentClass = TentangAplikasiFragment.class;
+                Log.d("title", menuItem.getTitle() + "");
+                break;
+            case R.id.nav_tenth_fragment:
+                fragmentClass = LaporanFragment.class;
+                Log.d("title", menuItem.getTitle() + "");
+                break;
+            case R.id.nav_eleventh_fragment:
                 fragmentClass = LogoutFragment.class;
                 session.logoutUser();
                 break;

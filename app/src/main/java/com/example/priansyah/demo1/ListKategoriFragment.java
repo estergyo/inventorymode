@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.priansyah.demo1.Adapter.ListKategoriAdapter;
@@ -35,6 +36,7 @@ public class ListKategoriFragment extends Fragment {
 
     ArrayList<Kategori> listOfCategories;
     SQLiteDatabase dbListKategori;
+    TextView category_empty_view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class ListKategoriFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
+
+        category_empty_view = (TextView) getActivity().findViewById(R.id.category_empty_view);
         setList();
     }
     public void setList(){
@@ -77,6 +81,14 @@ public class ListKategoriFragment extends Fragment {
 //        listOfCategories.add(new Kategori("nama2","deskripsi2"));
 
         adapter = new ListKategoriAdapter(getActivity(),getContext(),listOfCategories);
+        if (adapter.getItemCount() == 0) {
+            recList.setVisibility(View.GONE);
+            category_empty_view.setVisibility(View.VISIBLE);
+        }
+        else {
+            recList.setVisibility(View.VISIBLE);
+            category_empty_view.setVisibility(View.GONE);
+        }
         adapter.setOnItemClickListener(new ListKategoriAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {

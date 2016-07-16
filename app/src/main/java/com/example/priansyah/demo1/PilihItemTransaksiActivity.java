@@ -32,6 +32,7 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
     ListItemAdapter adapter;
 
     ArrayList<Item> listOfItems;
+    ArrayList<String> listOfPrice;
     SQLiteDatabase dbListItem;
     Button buttonTambahKeList;
     View popupView;
@@ -57,12 +58,15 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
         recList.setLayoutManager(llm);
 
         listOfItems = new ArrayList<>();
+        listOfPrice = new ArrayList<>();
         dbListItem.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
         Cursor items = dbListItem.rawQuery("select * from stock",null);
         if(items != null)
             if(items.moveToFirst())
                 do{
-                    listOfItems.add(new Item(items.getString(1),items.getString(0),""+0,""+items.getInt(3),items.getString(5),items.getString(4),items.getString(6)));
+                    String harga = "Rp "+items.getInt(3)+",-";
+                    listOfItems.add(new Item(items.getString(1),items.getString(0),""+0, harga,items.getString(5),items.getString(4),items.getString(6)));
+                    listOfPrice.add("Rp 0,-");
     }while(items.moveToNext());
 
         setList();
@@ -87,6 +91,7 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
                 else {
                     Intent intent = new Intent();
                     intent.putExtra("PILIHITEMLIST", listOfItems);
+                    intent.putExtra("LISTHARGA", listOfPrice);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -137,14 +142,21 @@ public class PilihItemTransaksiActivity extends AppCompatActivity {
                             Toast.makeText(PilihItemTransaksiActivity.this, "Jumlah melebihi barang tersedia", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            listOfItems.get(position).setTextJumlah((Integer.parseInt(listOfItems.get(position).getTextJumlah()) + jumlah) +"");
+                            listOfItems.get(position).setTextJumlah((Integer.parseInt(listOfItems.get(position).getTextJumlah()) + jumlah) + "");
+                            String helper = listOfItems.get(position).getTextHarga().substring(2,listOfItems.get(position).getTextHarga().length()-2);
+                            Log.d("helper", helper);
+                            int price = Integer.parseInt(helper) * Integer.parseInt(listOfItems.get(position).getTextJumlah());
+                            Log.d("price", "" + listOfPrice.get(0));
+                            listOfPrice.set(position, "Rp " + price + ",-");
                             setList();
                         }
                         popupWindow.dismiss();
                     }
                 });
-
-                popupWindow.showAsDropDown(view, 50, -50);
+                view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+                int xOffset = -(view.getMeasuredWidth() - view.getWidth()/2);
+                popupWindow.showAsDropDown(view, xOffset, -50);
+//                popupWindow.showAsDropDown(view, 50, -50);
 //                popupWindow.showAtLocation(view,  Gravity.CENTER, 0, 0);
             }
         });

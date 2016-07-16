@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class EditItemActivity extends AppCompatActivity {
     EditText editTextUpdateNamaEI;
-    TextView textUpdateSKU;
+    EditText editTextUpdateSKU;
     EditText editTextUpdateJumlah;
     EditText editTextUpdateHarga;
     Spinner spinnerUpdateSupplier;
@@ -65,7 +65,7 @@ public class EditItemActivity extends AppCompatActivity {
 
         editTextUpdateNamaEI = (EditText) findViewById(R.id.editTextUpdateNamaEI);
         editTextUpdateHarga = (EditText) findViewById(R.id.editTextUpdateHarga);
-        textUpdateSKU = (TextView) findViewById(R.id.textUpdateSKU);
+        editTextUpdateSKU = (EditText) findViewById(R.id.editTextUpdateSKU);
         editTextUpdateJumlah = (EditText) findViewById(R.id.editTextUpdateJumlah);
 
         spinnerUpdateKategori = (Spinner) findViewById(R.id.spinnerUpdateKategori);
@@ -86,8 +86,17 @@ public class EditItemActivity extends AppCompatActivity {
         });
 
         editTextUpdateNamaEI.setText(item.getTextNama());
-        editTextUpdateHarga.setText(item.getTextHarga());
-        textUpdateSKU.setText(item.getTextSKU());
+        if (item.getTextHarga().substring(0,1).equals("R")) {
+            String harga = item.getTextHarga().substring(3,item.getTextHarga().length()-2);
+            editTextUpdateHarga.setText(harga);
+            Log.d("harga", item.getTextHarga());
+        }
+        else {
+            editTextUpdateHarga.setText(item.getTextHarga());
+            Log.d("harga", item.getTextHarga());
+        }
+
+        editTextUpdateSKU.setText(item.getTextSKU());
         editTextUpdateJumlah.setText(item.getTextJumlah());
         imageEditItem.setImageBitmap(decodeBase64(item.getTextImage()));
 
@@ -233,9 +242,7 @@ public class EditItemActivity extends AppCompatActivity {
         else {
             Cursor name = dbEditItem.rawQuery("select * from stock where sku = '" + item.getTextSKU() + "' ", null);
             if (name.getCount()==1) {
-//                UPDATE COMPANY SET ADDRESS = 'Texas' WHERE ID = 6
-//                sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR
-                dbEditItem.execSQL("update stock set name = '" + editTextUpdateNamaEI.getText() + "', amount = " + editTextUpdateJumlah.getText() + ", price = " + editTextUpdateHarga.getText() + ", category = '" + spinnerUpdateKategori.getSelectedItem().toString() + "', supplier = '" + spinnerUpdateSupplier.getSelectedItem().toString() + "', image = '"+ encodeTobase64(((BitmapDrawable)imageEditItem.getDrawable()).getBitmap()) +"' where sku = '" + item.getTextSKU() + "' ");
+                dbEditItem.execSQL("update stock set name = '" + editTextUpdateNamaEI.getText() + "', amount = " + editTextUpdateJumlah.getText() + ", price = "+editTextUpdateHarga.getText()+", category = '" + spinnerUpdateKategori.getSelectedItem().toString() + "', supplier = '" + spinnerUpdateSupplier.getSelectedItem().toString() + "', image = '"+ encodeTobase64(((BitmapDrawable)imageEditItem.getDrawable()).getBitmap()) +"' where sku = '" + item.getTextSKU() + "' ");
                 Intent returnIntent = new Intent();
                 Item newItem = new Item(editTextUpdateNamaEI.getText().toString(),item.getTextSKU(),editTextUpdateJumlah.getText().toString(),editTextUpdateHarga.getText().toString(),spinnerUpdateSupplier.getSelectedItem().toString(),spinnerUpdateKategori.getSelectedItem().toString(), encodeTobase64(((BitmapDrawable)imageEditItem.getDrawable()).getBitmap()));
                 returnIntent.putExtra("UPDATEDITEM", newItem);

@@ -33,35 +33,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextNamaTokoRegister"
-            android:hint="Toko"/>
+            android:hint="Toko"
+            android:singleLine="true"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextNamaUserRegister"
-            android:hint="Nama"/>
+            android:hint="Nama"
+            android:singleLine="true"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextEmailRegister"
             android:hint="Email"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:singleLine="true"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextUnameRegister"
-            android:hint="Username"/>
+            android:hint="Username"
+            android:singleLine="true"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextPasswordRegister"
             android:hint="Password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:singleLine="true"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextConfirmPasswordRegister"
             android:hint="Konfirmasi Password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:singleLine="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -75,6 +81,7 @@
             android:text="daftar"
             android:id="@+id/buttonDaftar"
             android:padding="10dp"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </LinearLayout>

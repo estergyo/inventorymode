@@ -4,15 +4,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="9">
-    <android.support.v7.widget.SearchView
+    <AutoCompleteTextView
         android:id="@+id/searchViewTransaksi"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
->
-    </android.support.v7.widget.SearchView>
+        android:layout_alignParentTop="true">
+    </AutoCompleteTextView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,7 +24,8 @@
             android:layout_marginBottom="5dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="Tambah Barang"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 
     <LinearLayout
@@ -33,7 +33,9 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="0.5"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
 
         <TextView
             android:layout_width="0dp"
@@ -65,7 +67,7 @@
         android:id="@+id/listViewItemTransaksi"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="5" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,6 +82,7 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:layout_gravity="center|bottom"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </LinearLayout>

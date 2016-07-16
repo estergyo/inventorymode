@@ -26,6 +26,7 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:text="simpan"
-        android:background="@drawable/button"/>
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>

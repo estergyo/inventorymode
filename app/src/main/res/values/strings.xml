@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Demo1</string>
+    <string name="app_name">Barado POS</string>
     <string name="inventory">Inventory Mode</string>
     <string name="detail_item">Detail Item</string>
     <string name="tambah_item">Tambah Item</string>

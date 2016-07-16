@@ -45,6 +45,9 @@ public class TambahItemActivity extends AppCompatActivity{
 //    Button buttonKameraTI;
 //    ImageView imageTambahItem;
     ImageButton imageButtonTambahItem;
+    Button buttonTambahKategoriTI;
+    Button buttonTambahSupplierTI;
+
 
     SQLiteDatabase db;
     
@@ -74,6 +77,9 @@ public class TambahItemActivity extends AppCompatActivity{
 //        imageTambahItem = (ImageView) findViewById(R.id.imageTambahItem);
         imageButtonTambahItem = (ImageButton) findViewById(R.id.imageButtonTambahItem);
 
+        buttonTambahKategoriTI = (Button) findViewById(R.id.buttonTambahKategoriTI);
+        buttonTambahSupplierTI = (Button) findViewById(R.id.buttonTambahSupplierTI);
+
 //        buttonKameraTI.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -87,6 +93,22 @@ public class TambahItemActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 0);
+            }
+        });
+
+        buttonTambahKategoriTI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TambahItemActivity.this, TambahKategoriActivity.class);
+                startActivityForResult(intent, getResources().getInteger(R.integer.category_new_rq_code));
+            }
+        });
+
+        buttonTambahSupplierTI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TambahItemActivity.this, TambahSupplierActivity.class);
+                startActivityForResult(intent, getResources().getInteger(R.integer.supplier_new_rq_code));
             }
         });
 

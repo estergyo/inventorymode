@@ -87,13 +87,14 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ItemVi
             textViewHarga = (TextView) v.findViewById(R.id.text_item_harga);
 //            textViewSupplier = (TextView) v.findViewById(R.id.text_item_supplier);
 //            textViewKategori = (TextView) v.findViewById(R.id.text_item_kategori);
+
             v.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             if (mItemClickListener != null) {
-                mItemClickListener.onItemClick(v, getPosition());
+                mItemClickListener.onItemClick(v, getAdapterPosition());
             }
         }
     }

@@ -24,7 +24,8 @@
             android:textSize="14pt"
             android:text="harga"
             android:gravity="center"
-            android:id="@+id/textViewHargaPembayaran"/>
+            android:id="@+id/textViewHargaPembayaran"
+            android:textStyle="bold"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,6 +60,7 @@
             android:id="@+id/buttonLanjutPembayaran"
             android:layout_margin="5dp"
             android:gravity="center|bottom"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </LinearLayout>

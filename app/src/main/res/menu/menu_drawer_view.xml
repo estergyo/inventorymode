@@ -15,11 +15,31 @@
         <item
             android:id="@+id/nav_third_fragment"
             android:title="Riwayat Transaksi" />
-
+        <item
+            android:id="@+id/nav_fourth_fragment"
+            android:title="Lisensi" />
+        <item
+            android:id="@+id/nav_fifth_fragment"
+            android:title="FAQ" />
+        <item
+            android:id="@+id/nav_sixth_fragment"
+            android:title="Bantuan" />
+        <item
+            android:id="@+id/nav_seventh_fragment"
+            android:title="Panduan" />
+        <item
+            android:id="@+id/nav_eighth_fragment"
+            android:title="Pengaturan" />
+        <item
+            android:id="@+id/nav_ninth_fragment"
+            android:title="Tentang Aplikasi" />
             <!--</menu>-->
         <!--</item>-->
         <item
-            android:id="@+id/nav_fourth_fragment"
+            android:id="@+id/nav_tenth_fragment"
+            android:title="Laporan" />
+        <item
+            android:id="@+id/nav_eleventh_fragment"
             android:title="Keluar" />
     </group>
 </menu>

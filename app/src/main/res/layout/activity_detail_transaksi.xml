@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginLeft="10dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.3"
@@ -28,147 +29,192 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:layout_height="wrap_content"
-            android:text="Tanggal"
-            android:layout_margin="6dp" />
+        android:layout_marginLeft="10dp">
         <TextView
             android:id="@+id/textViewTanggalTransaksi"
-            android:layout_width="0dp"
-            android:layout_weight="0.7"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Transaction Date"
-            android:layout_margin="6dp" /> />
+            android:layout_margin="6dp"/>
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Barang yang dibeli"
         android:textStyle="bold"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ID"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nama"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Jumlah"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Harga"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="230dp">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recViewDetailTransaksi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="4dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:text="Diskon"
-            android:layout_margin="6dp" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/textViewDiskonTransaksi"
             android:layout_width="0dp"
             android:layout_weight="0.7"
             android:layout_height="wrap_content"
             android:text="Transaction Discount"
-            android:layout_margin="6dp" /> />
+            android:gravity="right"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="4dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:text="Pajak"
-            android:layout_margin="6dp" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/textViewPajakTransaksi"
             android:layout_width="0dp"
             android:layout_weight="0.7"
             android:layout_height="wrap_content"
             android:text="Transaction Tax"
-            android:layout_margin="6dp" /> />
+            android:gravity="right"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="4dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:text="Total"
-            android:layout_margin="6dp" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/textViewTotalTransaksi"
             android:layout_width="0dp"
             android:layout_weight="0.7"
             android:layout_height="wrap_content"
             android:text="Total Price"
-            android:layout_margin="6dp" /> />
+            android:gravity="right"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="4dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:text="Bayar"
-            android:layout_margin="6dp" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/textViewBayarTransaksi"
             android:layout_width="0dp"
             android:layout_weight="0.7"
             android:layout_height="wrap_content"
             android:text="Tendered"
-            android:layout_margin="6dp" /> />
+            android:gravity="right"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="4dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:text="Kembali"
-            android:layout_margin="6dp" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/textViewKembalianTransaksi"
             android:layout_width="0dp"
             android:layout_weight="0.7"
             android:layout_height="wrap_content"
             android:text="Change"
-            android:layout_margin="6dp" /> />
+            android:gravity="right"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:weightSum="2"
         android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:divider="@drawable/divider"
+        android:showDividers="middle">
         <Button
             android:id="@+id/buttonRefund"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:text="pengembalian dana"
-            android:layout_gravity="center"
+            android:layout_gravity="center|top"
             android:layout_weight="1"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
         <Button
             android:id="@+id/buttonReceipt"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:text="kirim struk"
-            android:layout_gravity="center"
+            android:layout_gravity="center|top"
             android:layout_weight="1"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </LinearLayout>

@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageEditItem"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
         android:scaleType="center" />
@@ -21,43 +21,61 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:text="edit gambar"
-        android:background="@drawable/button"/>
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
     <EditText
         android:id="@+id/editTextUpdateNamaEI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="Nama Produk"/>
-    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nama Produk"
+        android:singleLine="true"/>
+    <EditText
         android:layout_width="match_parent"
         android:text="SKU"
-        android:id="@+id/textUpdateSKU"
+        android:id="@+id/editTextUpdateSKU"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:singleLine="true"/>
     <EditText
         android:id="@+id/editTextUpdateJumlah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:inputType="number"
-        android:hint="Jumlah"/>
+        android:hint="Jumlah"
+        android:singleLine="true"/>
     <EditText
         android:id="@+id/editTextUpdateHarga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:inputType="number"
-        android:hint="Harga"/>
+        android:hint="Harga"
+        android:singleLine="true"/>
     <Spinner
         android:id="@+id/spinnerUpdateSupplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
     <Spinner
         android:id="@+id/spinnerUpdateKategori"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
     <Button
         android:id="@+id/buttonUpdateEI"
         android:layout_width="match_parent"
@@ -65,5 +83,24 @@
         android:layout_gravity="center|bottom"
         android:text="simpan"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/button"/>
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
+    <Button
+        android:id="@+id/buttonTambahKategoriEI"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center|bottom"
+        android:text="tambah kategori"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
+    <Button
+        android:id="@+id/buttonTambahSupplierEI"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center|bottom"
+        android:text="tambah pemasok"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 </LinearLayout>

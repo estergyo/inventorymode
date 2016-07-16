@@ -29,40 +29,58 @@
         android:id="@+id/editTextNamaProduk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:hint="Nama Produk"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:textSize="14sp"/>
     <EditText
         android:id="@+id/editTextSKU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:inputType="number"
-        android:hint="SKU"/>
+        android:hint="SKU"
+        android:textSize="14sp"/>
     <EditText
         android:id="@+id/editTextJumlah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:inputType="number"
-        android:hint="Jumlah"/>
+        android:hint="Jumlah"
+        android:textSize="14sp"/>
     <EditText
         android:id="@+id/editTextHarga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:inputType="number"
-        android:hint="Harga"/>
+        android:hint="Harga"
+        android:textSize="14sp"/>
     <Spinner
         android:id="@+id/spinnerSupplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        />
     <Spinner
         android:id="@+id/spinnerKategori"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        />
     <Button
         android:id="@+id/simpanItem"
         android:layout_width="match_parent"
@@ -70,5 +88,33 @@
         android:layout_gravity="center|bottom"
         android:text="simpan"
         android:background="@drawable/button"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="3dp"
+        android:textColor="#FFFFFF"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="2dp"
+        android:showDividers="middle"
+        android:divider="@drawable/divider">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:id="@+id/buttonTambahKategoriTI"
+            android:text="tambah kategori"
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:id="@+id/buttonTambahSupplierTI"
+            android:text="tambah pemasok"
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
 </LinearLayout>

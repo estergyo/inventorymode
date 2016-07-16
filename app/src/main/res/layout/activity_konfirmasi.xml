@@ -31,18 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.2"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tanggal"
-                android:textSize="14dp"
-                android:layout_marginRight="40dp"
-                android:id="@+id/tanggalText" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +79,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_weight="5"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listViewItemKonfirmasi"
             android:layout_width="match_parent"
@@ -95,7 +92,9 @@
         android:layout_height="0dp"
         android:layout_weight="1.8"
         android:orientation="vertical"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -113,7 +112,8 @@
                 android:layout_height="wrap_content"
                 android:text="%"
                 android:id="@+id/textViewDiskonKfm"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="right"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -131,7 +131,8 @@
                 android:layout_height="wrap_content"
                 android:text="%"
                 android:id="@+id/textViewPajakKfm"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="right"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -150,7 +151,8 @@
                 android:layout_height="wrap_content"
                 android:text="20000"
                 android:id="@+id/textViewTotalKfm"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="right"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -166,6 +168,7 @@
             android:id="@+id/buttonLanjutKonfirmasi"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </LinearLayout>

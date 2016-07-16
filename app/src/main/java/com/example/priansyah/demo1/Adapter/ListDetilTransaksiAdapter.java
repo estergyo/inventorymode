@@ -2,16 +2,21 @@ package com.example.priansyah.demo1.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.priansyah.demo1.Entity.TransDetail;
 import com.example.priansyah.demo1.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Priansyah on 3/6/2016.
@@ -77,9 +82,9 @@ public class ListDetilTransaksiAdapter extends RecyclerView.Adapter<ListDetilTra
         public DetilTransaksiViewHolder(View v) {
             super(v);
             textViewTransId = (TextView) v.findViewById(R.id.text_transdetail_trans_id);
-            textViewNama = (TextView) v.findViewById(R.id.text_transdetail_nama);
-            textViewJumlah = (TextView) v.findViewById(R.id.text_transdetail_jumlah);
-            textViewHarga = (TextView) v.findViewById(R.id.text_transdetail_harga);
+            textViewNama = (TextView) itemView.findViewById(R.id.text_transdetail_nama);
+            textViewJumlah = (TextView) itemView.findViewById(R.id.text_transdetail_jumlah);
+            textViewHarga = (TextView) itemView.findViewById(R.id.text_transdetail_harga);
 //            textViewTanggalTrans = (TextView) v.findViewById(R.id.text_transdetail_tanggal);
             v.setOnClickListener(this);
         }

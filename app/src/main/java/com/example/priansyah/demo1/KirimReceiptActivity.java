@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class KirimReceiptActivity extends AppCompatActivity {
 
     Button buttonKirimReceipt;
+    Button buttonAbaikanReceipt;
     EditText editTextEmailPembeli;
     EditText editTextPonselPembeli;
     RadioButton radioSend1;
@@ -43,7 +44,7 @@ public class KirimReceiptActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         // Get access to the custom title view
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitle.setText("Media kirim Struk");
+        mTitle.setText("Kirim Struk");
 
         editTextEmailPembeli = (EditText) findViewById(R.id.editTextEmailPembeli);
         editTextPonselPembeli = (EditText) findViewById(R.id.editTextPonselPembeli);
@@ -92,6 +93,16 @@ public class KirimReceiptActivity extends AppCompatActivity {
                 }
             }
         });
+
+        buttonAbaikanReceipt = (Button) findViewById(R.id.buttonAbaikanReceipt);
+        buttonAbaikanReceipt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(KirimReceiptActivity.this, HomeActivity.class);
+                intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                intent.putExtra("from",1);
+                startActivity(intent);
+            }
+        });
     }
     protected void sendEmail() {
         Log.i("Send email", "");
@@ -110,11 +121,11 @@ public class KirimReceiptActivity extends AppCompatActivity {
 
         listOfTransactionDetail = getIntent().getParcelableArrayListExtra("TRANSDETLIST");
         textBody = "Transaksi tanggal " + listOfTransactionDetail.get(listOfTransactionDetail.size()-1).getTextTanggalTrans() + "\n";
-        textBody += "ID \t Nama \t\t Jumlah \t Harga \n";
+//        textBody += "ID \t Nama \t\t Jumlah \t Harga \n";
         for (int i=0; i<listOfTransactionDetail.size(); i++) {
-            textBody += listOfTransactionDetail.get(i).getTextTransId() + "\t" +
-                    listOfTransactionDetail.get(i).getTextNama() + "\t\t" +
-                    listOfTransactionDetail.get(i).getTextJumlah() + "\t" +
+            textBody += "ID " + listOfTransactionDetail.get(i).getTextTransId() + ": Produk " +
+                    listOfTransactionDetail.get(i).getTextNama() + " berjumlah " +
+                    listOfTransactionDetail.get(i).getTextJumlah() + " dengan harga " +
                     listOfTransactionDetail.get(i).getTextHarga() +
 //                    listOfTransactionDetail.get(i).getTextTanggalTrans() + "\t" +
                      "\n";
@@ -169,7 +180,7 @@ public class KirimReceiptActivity extends AppCompatActivity {
         }
         catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(KirimReceiptActivity.this,
-                    "SMS faild, please try again later.", Toast.LENGTH_SHORT).show();
+                    "SMS failed, please try again later.", Toast.LENGTH_SHORT).show();
         }
     }
 }

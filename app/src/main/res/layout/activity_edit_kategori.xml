@@ -12,13 +12,16 @@
         android:id="@+id/textUpdateNamaEK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="10dp"
         android:hint="Nama Kategori"/>
     <EditText
         android:id="@+id/editTextUpdateDeskripsi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:hint="Deskripsi"/>
     <Button
         android:id="@+id/buttonUpdateEK"
@@ -26,6 +29,7 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:text="simpan"
-        android:background="@drawable/button"/>
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>

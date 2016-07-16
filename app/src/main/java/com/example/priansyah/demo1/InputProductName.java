@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,8 +35,7 @@ public class InputProductName extends ActionBarActivity implements View.OnClickL
     private EditText priceTxtFld;
     Spinner spinnerSupplierIPN;
     Spinner spinnerKategoriIPN;
-    Button buttonKameraIPN;
-    ImageView imageItemIPN;
+    ImageButton imageButtonKameraIPN;
     SQLiteDatabase dbIPN;
 
     @Override
@@ -54,8 +54,7 @@ public class InputProductName extends ActionBarActivity implements View.OnClickL
         saveBtn = (Button)findViewById(R.id.buttonSimpanScan);
         nameTxtFld = (EditText)findViewById(R.id.editTextNamaProdukBaru);
         priceTxtFld = (EditText)findViewById(R.id.editTextHargaProdukBaru);
-        buttonKameraIPN = (Button) findViewById(R.id.buttonKameraIPN);
-        imageItemIPN = (ImageView) findViewById(R.id.imageItemIPN);
+        imageButtonKameraIPN = (ImageButton) findViewById(R.id.imageButtonKameraIPN);
         saveBtn.setOnClickListener(this);
 
         spinnerKategoriIPN = (Spinner) findViewById(R.id.spinnerKategoriIPN);
@@ -66,7 +65,7 @@ public class InputProductName extends ActionBarActivity implements View.OnClickL
         dbIPN.execSQL("Create table if not exists category(name VARCHAR, description VARCHAR);");
         dbIPN.execSQL("Create table if not exists supplier(name VARCHAR, address VARCHAR, contact VARCHAR);");
 
-        buttonKameraIPN.setOnClickListener(new View.OnClickListener() {
+        imageButtonKameraIPN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -161,14 +160,14 @@ public class InputProductName extends ActionBarActivity implements View.OnClickL
         Intent pName = getIntent();
         String scanContent = pName.getStringExtra(InventoryActivity.EXTRA_MESSAGE);
         SQLiteDatabase dbIPN = openOrCreateDatabase("POS", MODE_PRIVATE, null);
-        if (nameTxtFld.getText().length() == 0 || scanContent.length() == 0 || priceTxtFld.getText().equals(0) || imageItemIPN.getDrawable()== null) {
+        if (nameTxtFld.getText().length() == 0 || scanContent.length() == 0 || priceTxtFld.getText().equals(0) || imageButtonKameraIPN.getDrawable()== null) {
             Toast.makeText(InputProductName.this, "data produk tidak boleh kosong", Toast.LENGTH_SHORT).show();
         }
         else {
             Cursor name = dbIPN.rawQuery("select * from stock where sku = '" + scanContent + "' ", null);
             if (name.getCount()==0) {
                 dbIPN.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
-                dbIPN.execSQL("insert into stock values('"+scanContent+"', '"+nameTxtFld.getText()+"', 1, "+priceTxtFld.getText()+", 'Kategori1', 'Supplier1', '"+ encodeTobase64(((BitmapDrawable)imageItemIPN.getDrawable()).getBitmap()) +"')");
+                dbIPN.execSQL("insert into stock values('"+scanContent+"', '"+nameTxtFld.getText()+"', 1, "+priceTxtFld.getText()+", 'Kategori1', 'Supplier1', '"+ encodeTobase64(((BitmapDrawable)imageButtonKameraIPN.getDrawable()).getBitmap()) +"')");
                 Intent returnIntent = new Intent();
                 setResult(RESULT_OK,returnIntent);
                 finish();
@@ -183,7 +182,7 @@ public class InputProductName extends ActionBarActivity implements View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
         if(data != null) {
             Bitmap bp = (Bitmap) data.getExtras().get("data");
-            imageItemIPN.setImageBitmap(bp);
+            imageButtonKameraIPN.setImageBitmap(bp);
         }
     }
 

@@ -15,8 +15,11 @@ import android.widget.Toast;
 
 import com.example.priansyah.demo1.Entity.TransDetail;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by ester gyo fanny on 23/04/2016.
@@ -50,7 +53,7 @@ public class PembayaranActivity extends AppCompatActivity {
         final Double pajak = (Double) getIntent().getSerializableExtra("PAJAK");
         listOfTransactionDetail = getIntent().getParcelableArrayListExtra("TRANSDETLIST");
 
-        textViewHargaPembayaran.setText(""+finalPrice);
+        textViewHargaPembayaran.setText("Rp "+finalPrice+",-");
 
         buttonLanjutPembayaran.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -71,12 +74,14 @@ public class PembayaranActivity extends AppCompatActivity {
                         intent.putExtra("TRANSDETLIST", listOfTransactionDetail);
 
                         dbTransaction = openOrCreateDatabase("POS", MODE_PRIVATE, null);
-                        dbTransaction.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, amount INT, price VARCHAR, date_created VARCHAR);");
-                        dbTransaction.execSQL("Create table if not exists stock_transaction(transaction_id INT, total INT, discount INT, tax VARCHAR, date_created VARCHAR, payment INT);");
+                        dbTransaction.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, product_name VARCHAR, amount INT, price VARCHAR, date_created VARCHAR);");
+                        dbTransaction.execSQL("Create table if not exists stock_transaction(transaction_id INT, total INT, discount INT, tax VARCHAR, date_created VARCHAR, payment INT, time_created VARCHAR);");
 
 
                         Calendar c = Calendar.getInstance();
-                        String date = c.get(Calendar.DATE) +"/" + c.get(Calendar.MONTH) +"/" + c.get(Calendar.YEAR);
+                        int month = c.get(Calendar.MONTH) + 1;
+                        String date = c.get(Calendar.DATE) +"/" + month +"/" + c.get(Calendar.YEAR);
+                        String time = c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE);
 
                         Cursor maxTrans = dbTransaction.rawQuery("SELECT MAX(transaction_id) FROM stock_transaction", null);
                         Log.v("jmlidmaxawal", "" + maxTrans.getCount());
@@ -89,12 +94,12 @@ public class PembayaranActivity extends AppCompatActivity {
                                 isCursorToFirst = true;
                                 if (maxTrans.getInt(0) == -1) {
                                     Log.v("tostring", "" + maxTrans.getString(0));
-                                    dbTransaction.execSQL("insert into stock_transaction values(1, '" + finalPrice + "', '" + diskon + "', '" + pajak + "', '" + date + "')");
+                                    dbTransaction.execSQL("insert into stock_transaction values(1, '" + finalPrice + "', '" + diskon + "', '" + pajak + "', '" + date + "', '"+ time +"')");
                                     maxTrans = dbTransaction.rawQuery("SELECT MAX(transaction_id) FROM stock_transaction", null);
                                 } else {
                                     if (maxTrans.moveToFirst())
                                         Log.v("tostring2", "" + maxTrans.getString(0));
-                                    dbTransaction.execSQL("insert into stock_transaction values('" + (maxTrans.getInt(0) + 1) + "', '" + finalPrice + "', '" + diskon + "', '" + pajak + "', '" + date + "', '" + paymentValue + "')");
+                                    dbTransaction.execSQL("insert into stock_transaction values('" + (maxTrans.getInt(0) + 1) + "', '" + finalPrice + "', '" + diskon + "', '" + pajak + "', '" + date + "', '" + paymentValue + "', '"+time+"')");
                                 }
                             }
                         }
@@ -141,11 +146,11 @@ public class PembayaranActivity extends AppCompatActivity {
                             maxTrans.moveToFirst();
                             Log.v("idtrans", "" + maxTrans.getInt(0));
                             if(maxTransDetail==null) {
-                                dbTransaction.execSQL("insert into transaction_detail values('" + i + "', '" + (maxTrans.getInt(0) +1) + "', '" + listOfTransactionDetail.get(i - 1).getTextSKU() + "', '" + listOfTransactionDetail.get(i - 1).getTextHarga() + "', '" + date + "')");
+                                dbTransaction.execSQL("insert into transaction_detail values('" + i + "', '" + (maxTrans.getInt(0) +1) + "', '" + listOfTransactionDetail.get(i - 1).getTextSKU() + "', '" + listOfTransactionDetail.get(i - 1).getTextNama() + "' , '" + listOfTransactionDetail.get(i - 1).getTextHarga() + "', '" + date + "')");
                                 Log.v("detiltras1", "" + maxTransDetail.getInt(0));
                             } else {
                                 if (maxTransDetail.moveToFirst())
-                                    dbTransaction.execSQL("insert into transaction_detail values('" + (maxTransDetail.getInt(0) + i) + "', '" + (maxTrans.getInt(0) +1) + "', '" + listOfTransactionDetail.get(i - 1).getTextSKU() + "', '" + listOfTransactionDetail.get(i - 1).getTextJumlah() + "', '" + listOfTransactionDetail.get(i - 1).getTextHarga() + "', '" + date + "')");
+                                    dbTransaction.execSQL("insert into transaction_detail values('" + (maxTransDetail.getInt(0) + i) + "', '" + (maxTrans.getInt(0) +1) + "', '" + listOfTransactionDetail.get(i - 1).getTextSKU() + "', '" + listOfTransactionDetail.get(i - 1).getTextNama() + "', '" + listOfTransactionDetail.get(i - 1).getTextJumlah() + "', '" + listOfTransactionDetail.get(i - 1).getTextHarga() + "', '" + date + "')");
                                 Log.v("detiltrans1", "" + maxTransDetail.getInt(0));
                             }
                         }

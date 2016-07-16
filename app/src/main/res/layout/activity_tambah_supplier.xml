@@ -13,26 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:hint="Nama"/>
+        android:hint="Nama"
+        android:singleLine="true"/>
     <EditText
         android:id="@+id/editTextAlamat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:hint="Alamat"/>
+        android:hint="Alamat"
+        android:singleLine="true"/>
     <EditText
         android:id="@+id/editTextKontak"
         android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:hint="Kontak"/>
+        android:hint="Kontak"
+        android:singleLine="true"/>
     <Button
         android:id="@+id/simpanSupplier"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:text="simpan"
-        android:background="@drawable/button"/>
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>

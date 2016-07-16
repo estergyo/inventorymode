@@ -10,11 +10,21 @@
         android:layout_margin="12dp"
         android:layout_gravity="center"
         android:text="Tambah Pemasok"
-        android:background="@drawable/button"/>
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listViewSupplier"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <TextView
+        android:id="@+id/supplier_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:text="Pemasok Barang Kosong" />
     
 </LinearLayout>

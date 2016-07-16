@@ -73,7 +73,8 @@ public class KonfirmasiActivity extends AppCompatActivity {
 
         double harga = 0.0;
         for (int i=0; i<listOfTransactionDetail.size(); i++) {
-            harga += Integer.parseInt(listOfTransactionDetail.get(i).getTextHarga());
+            String helper = listOfTransactionDetail.get(i).getTextHarga().substring(2, listOfTransactionDetail.get(i).getTextHarga().length()-2);
+            harga += Integer.parseInt(helper);
         }
 
         total = harga - (discountKonfirmasi * harga);
@@ -82,11 +83,12 @@ public class KonfirmasiActivity extends AppCompatActivity {
         final Double finalPrice = harga + tax;
 
         adapter = new ListDetilTransaksiAdapter(this, getBaseContext(), listOfTransactionDetail);
+        recList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recList.setAdapter(adapter);
 
         textViewDiskonKfm.setText(String.format("%.0f%%", discountKonfirmasi));
-        textViewTotalKfm.setText("" + finalPrice);
-        textViewPajakKfm.setText("" + tax);
+        textViewTotalKfm.setText("Rp " + finalPrice + ",-");
+        textViewPajakKfm.setText("Rp " + tax + ",-");
 
 
         buttonLanjutKonfirmasi = (Button) findViewById(R.id.buttonLanjutKonfirmasi);

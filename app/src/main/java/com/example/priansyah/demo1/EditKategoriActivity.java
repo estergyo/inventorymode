@@ -34,6 +34,13 @@ public class EditKategoriActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // Remove default title text
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         // Get access to the custom title view
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText("Edit Kategori");
@@ -53,27 +60,24 @@ public class EditKategoriActivity extends AppCompatActivity {
         buttonUpdateEK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkInput();            }
+                checkInput();
+            }
         });
     }
 
     public void checkInput() {
         if (textUpdateNamaEK.getText().toString().equals("") || editTextUpdateDeskripsi.getText().toString().equals("")) {
             Toast.makeText(EditKategoriActivity.this, "data kategori tidak boleh kosong", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Cursor name = dbEditKategori.rawQuery("select * from category where name = '" + kategori.getTextNama() + "' ", null);
-            if (name.getCount()==1) {
-                dbEditKategori.execSQL("update category set description = '"+editTextUpdateDeskripsi.getText()+"' where name = '" + kategori.getTextNama() + "' ");
+            if (name.getCount() == 1) {
+                dbEditKategori.execSQL("update category set description = '" + editTextUpdateDeskripsi.getText() + "' where name = '" + kategori.getTextNama() + "' ");
                 Intent returnIntent = new Intent();
-                Kategori newKategori = new Kategori(kategori.getTextNama(),editTextUpdateDeskripsi.getText().toString());
+                Kategori newKategori = new Kategori(kategori.getTextNama(), editTextUpdateDeskripsi.getText().toString());
                 returnIntent.putExtra("UPDATEDKATEGORI", newKategori);
-                setResult(RESULT_OK,returnIntent);
+                setResult(RESULT_OK, returnIntent);
                 Toast.makeText(EditKategoriActivity.this, "data tersimpan", Toast.LENGTH_SHORT).show();
             }
-//            else{
-//                Toast.makeText(TambahKategoriActivity.this,"kategori telah terdaftar",Toast.LENGTH_SHORT).show();
-//            }
         }
     }
 }

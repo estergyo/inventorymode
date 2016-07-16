@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:layout_width="0dp"
+            android:text="No"
+            android:id="@+id/text_transdetail_trans_id"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
+        <TextView
+            android:layout_width="0dp"
+            android:text="nama"
+            android:id="@+id/text_transdetail_nama"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
+        <TextView
+            android:layout_width="0dp"
+            android:text="Jumlah"
+            android:id="@+id/text_transdetail_jumlah"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
+        <TextView
+            android:layout_width="0dp"
+            android:text="Harga"
+            android:id="@+id/text_transdetail_harga"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
+        <!--<TextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:text="Tanggal"-->
+        <!--android:id="@+id/text_transdetail_tanggal"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"/>-->
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/undo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="batal"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:layout_gravity="end|center_vertical"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        />
+
+    <!-- quick and dirty divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#1CC09F"
+        android:layout_gravity="bottom"
+        />
+
+</FrameLayout>

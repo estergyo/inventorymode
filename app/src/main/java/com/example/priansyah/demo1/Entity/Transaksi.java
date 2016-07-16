@@ -1,5 +1,6 @@
 package com.example.priansyah.demo1.Entity;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,6 +15,7 @@ public class Transaksi implements Parcelable {
     private String textTanggalTrans;
     private String textTotalTrans;
     private String textJumlahBayar;
+    private String textWaktuTrans;
 
     public Transaksi(){
         textTransId = "";
@@ -22,19 +24,21 @@ public class Transaksi implements Parcelable {
         textPajak = "";
         textTanggalTrans = "";
         textJumlahBayar = "";
+        textWaktuTrans = "";
     }
 
-    public Transaksi(String textTransId, String textTotalTrans, String textDiskon, String textPajak, String textTanggalTrans, String textJumlahBayar){
+    public Transaksi(String textTransId, String textTotalTrans, String textDiskon, String textPajak, String textTanggalTrans, String textJumlahBayar, String textWaktuTrans){
         this.textTransId = textTransId;
         this.textTotalTrans = textTotalTrans;
         this.textDiskon = textDiskon;
         this.textPajak = textPajak;
         this.textTanggalTrans = textTanggalTrans;
         this.textJumlahBayar = textJumlahBayar;
+        this.textWaktuTrans = textWaktuTrans;
     }
 
     public Transaksi(Parcel in){
-        String[] data = new String[6];
+        String[] data = new String[7];
 
         in.readStringArray(data);
         this.textTransId = data[0];
@@ -43,6 +47,7 @@ public class Transaksi implements Parcelable {
         this.textPajak = data[3];
         this.textTanggalTrans = data[4];
         this.textJumlahBayar = data[5];
+        this.textWaktuTrans = data[6];
     }
 
     @Override
@@ -58,8 +63,19 @@ public class Transaksi implements Parcelable {
                 this.textPajak,
                 this.textTanggalTrans,
                 this.textJumlahBayar,
+                this.textWaktuTrans,
         });
     }
+
+    public String[] convertToRow(int position) {
+        String[] temp = new String[4];
+        temp[0] = Integer.toString(position);
+        temp[1] = "#"+this.getTextTransId();
+        temp[2] = "Rp" + this.getTextTotalTrans() + ",-";
+        temp[3] = this.getTextWaktuTrans();
+        return temp;
+    }
+
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public Transaksi createFromParcel(Parcel in) {
             return new Transaksi(in);
@@ -116,5 +132,13 @@ public class Transaksi implements Parcelable {
 
     public void setTextTotalTrans(String textTotalTrans) {
         this.textTotalTrans = textTotalTrans;
+    }
+
+    public String getTextWaktuTrans() {
+        return textWaktuTrans;
+    }
+
+    public void setTextWaktuTrans(String textWaktuTrans) {
+        this.textWaktuTrans = textWaktuTrans;
     }
 }

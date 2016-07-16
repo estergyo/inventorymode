@@ -13,7 +13,8 @@
         android:orientation="horizontal"
         android:weightSum="2"
         android:gravity="center_horizontal|center_vertical"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp">
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -21,13 +22,14 @@
             android:layout_weight="1"
             android:text="Jumlah pengembalian dana"
             android:textStyle="bold"/>
-        <TextView
+        <EditText
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:text="IDR"
             android:layout_weight="1"
-            android:id="@+id/textViewJumlahRefund"/>
+            android:id="@+id/editTextJumlahRefund"
+            android:singleLine="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,7 +66,8 @@
                 android:id="@+id/radioGroupAlasan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:visibility="visible">
 
                 <RadioButton
                     android:id="@+id/radioAlasan1"
@@ -76,7 +79,8 @@
                     android:id="@+id/radioAlasan2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Barang tidak sesuai" />
+                    android:text="Barang tidak sesuai"
+                    android:checked="true"/>
 
                 <RadioButton
                     android:id="@+id/radioAlasan3"
@@ -87,9 +91,9 @@
 
             <EditText
                 android:id="@+id/editTextAlasan3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="lalala"
+                android:text="alasan lain"
                 android:layout_alignBottom="@+id/radioGroupAlasan"
                 android:layout_toRightOf="@id/radioGroupAlasan"
                 android:visibility="gone"/>
@@ -110,7 +114,8 @@
             android:layout_gravity= "center|bottom"
             android:id="@+id/buttonProsesRefund"
             android:background="@drawable/button"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 
 </LinearLayout>

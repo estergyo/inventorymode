@@ -1,9 +1,12 @@
 package com.example.priansyah.demo1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,9 +22,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.priansyah.demo1.Model.UserCheckResponse;
-
+import android.location.LocationListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,6 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editTextConfirmPasswordRegister;
     Button buttonDaftar;
     SessionManager session;
+    protected LocationManager locationManager;
+    private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 10; // dalam Meters
+    private static final long MINIMUM_TIME_BETWEEN_UPDATES = 60000; // dalam Milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,19 @@ public class RegisterActivity extends AppCompatActivity {
                 checkInput();
             }
         });
+
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    MINIMUM_TIME_BETWEEN_UPDATES,
+                    MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+                    new MyLocationListener()
+            );
+
+        } catch (SecurityException e) {
+            Toast.makeText(RegisterActivity.this,"Ada masalah dengan GPS", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void checkInput() {
@@ -150,5 +168,34 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         MainApplication.getInstance().getRequestQueue().add(request);
+    }
+    private class MyLocationListener implements LocationListener {
+
+        public void onLocationChanged(Location location) {
+            String message = String.format(
+                    "Deteksi Lokasi Baru \n Longitude: %1$s \n Latitude: %2$s",
+                    location.getLongitude(), location.getLatitude()
+            );
+            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+            //switchToMap();
+        }
+
+        public void onStatusChanged(String s, int i, Bundle b) {
+            Toast.makeText(RegisterActivity.this, "Status provider berubah",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        public void onProviderDisabled(String s) {
+            Toast.makeText(RegisterActivity.this,
+                    "Provider dinonaktifkan oleh user, GPS off",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        public void onProviderEnabled(String s) {
+            Toast.makeText(RegisterActivity.this,
+                    "Provider diaktifkan oleh user, GPS on",
+                    Toast.LENGTH_LONG).show();
+        }
+
     }
 }

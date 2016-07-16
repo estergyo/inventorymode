@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.priansyah.demo1.Adapter.ListKategoriAdapter;
@@ -31,6 +32,7 @@ public class ListSupplierFragment extends Fragment {
 	RecyclerView recList;
     ListSupplierAdapter adapter;
     Button buttonTambahSupplier;
+    TextView supplier_empty_view;
 
     ArrayList<Supplier> listOfSuppliers;
     SQLiteDatabase dbListSupplier;
@@ -55,7 +57,7 @@ public class ListSupplierFragment extends Fragment {
                 getParentFragment().startActivityForResult(intent, getResources().getInteger(R.integer.supplier_new_rq_code));
             }
         });
-
+        supplier_empty_view = (TextView) getActivity().findViewById(R.id.supplier_empty_view);
         recList = (RecyclerView) getView().findViewById(R.id.listViewSupplier);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -77,17 +79,26 @@ public class ListSupplierFragment extends Fragment {
 //        listOfSuppliers.add(new Supplier("nama2","alamat2","kontak2"));
 
         adapter = new ListSupplierAdapter(getActivity(),getContext(),listOfSuppliers);
-        adapter.setOnItemClickListener(new ListSupplierAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), DetailSupplierActivity.class);
-                intent.putExtra("Supplier", listOfSuppliers.get(position));
-                getParentFragment().startActivityForResult(intent, getResources().getInteger(R.integer.supplier_update_rq_code));
-            }
-        });
+        if (adapter.getItemCount() == 0) {
+            recList.setVisibility(View.GONE);
+            supplier_empty_view.setVisibility(View.VISIBLE);
+        }
+        else {
+            recList.setVisibility(View.VISIBLE);
+            supplier_empty_view.setVisibility(View.GONE);
+            adapter.setOnItemClickListener(new ListSupplierAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Intent intent = new Intent(getActivity(), DetailSupplierActivity.class);
+                    intent.putExtra("Supplier", listOfSuppliers.get(position));
+                    getParentFragment().startActivityForResult(intent, getResources().getInteger(R.integer.supplier_update_rq_code));
+                }
+            });
 
-        recList.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-        recList.setAdapter(adapter);
+            recList.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+            recList.setAdapter(adapter);
+        }
+
     }
 
     @Override

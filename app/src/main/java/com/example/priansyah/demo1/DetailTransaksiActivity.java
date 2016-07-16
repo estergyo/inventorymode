@@ -67,12 +67,13 @@ public class DetailTransaksiActivity extends AppCompatActivity {
         textViewKembalianTransaksi = (TextView) findViewById(R.id.textViewKembalianTransaksi);
 
         transaksi = intent.getParcelableExtra("Transaksi");
+        Log.d("transaksi",""+ transaksi.getTextTransId());
         buttonRefund = (Button) findViewById(R.id.buttonRefund);
         buttonReceipt = (Button) findViewById(R.id.buttonReceipt);
 
         dbDetailTransaksi = openOrCreateDatabase("POS", MODE_PRIVATE, null);
-        dbDetailTransaksi.execSQL("Create table if not exists stock_transaction(transaction_id INT, total INT, discount INT, tax VARCHAR, date_created VARCHAR, payment INT);");
-        dbDetailTransaksi.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, amount INT, price VARCHAR, date_created VARCHAR);");
+        dbDetailTransaksi.execSQL("Create table if not exists stock_transaction(transaction_id INT, total INT, discount INT, tax VARCHAR, date_created VARCHAR, payment INT, time_created VARCHAR);");
+        dbDetailTransaksi.execSQL("Create table if not exists transaction_detail(trans_detail_id INT, transaction_id INT, product_sku INT, product_name VARCHAR, amount INT, price VARCHAR, date_created VARCHAR);");
 
         recList = (RecyclerView) findViewById(R.id.recViewDetailTransaksi);
         recList.setHasFixedSize(true);
@@ -121,33 +122,32 @@ public class DetailTransaksiActivity extends AppCompatActivity {
     public void setTexts(){
         textViewIdTransaksi.setText(transaksi.getTextTransId());
         textViewTanggalTransaksi.setText(transaksi.getTextTanggalTrans());
-        textViewDiskonTransaksi.setText(transaksi.getTextDiskon());
-        textViewPajakTransaksi.setText(transaksi.getTextPajak());
-        textViewTotalTransaksi.setText(transaksi.getTextTotalTrans());
-        textViewBayarTransaksi.setText(transaksi.getTextJumlahBayar());
+        textViewDiskonTransaksi.setText("Rp "+transaksi.getTextDiskon()+",-");
+        textViewPajakTransaksi.setText("Rp "+transaksi.getTextPajak()+",-");
+        textViewTotalTransaksi.setText("Rp "+transaksi.getTextTotalTrans()+",-");
+        textViewBayarTransaksi.setText("Rp "+transaksi.getTextJumlahBayar()+",-");
         int kembalian = Integer.parseInt(transaksi.getTextJumlahBayar()) - Integer.parseInt(transaksi.getTextTotalTrans());
-        textViewKembalianTransaksi.setText(""+ kembalian);
+        textViewKembalianTransaksi.setText("Rp "+ kembalian +",-");
 
     }
 
     public void setList(){
         listOfDetTrans = new ArrayList<>();
+
         int transId = Integer.parseInt(transaksi.getTextTransId().toString());
-        Log.v("int", "" + transId);
         Cursor transDet = dbDetailTransaksi.rawQuery("select * from transaction_detail where transaction_id = '" + transId  + "' ", null);
         if(transDet != null) {
-            Log.v("coba", "" + transDet.getCount());
             if (transDet.moveToFirst())
                 do {
-                    dbDetailTransaksi.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
-                    Cursor item = dbDetailTransaksi.rawQuery("select name from stock where sku = '" + transDet.getInt(2) + "' ", null);
-                    item.moveToFirst();
-                    String nama = item.getString(0);
-                    listOfDetTrans.add(new TransDetail("" + transDet.getInt(0), transDet.getString(2), nama, transDet.getString(3), transDet.getString(4), transDet.getString(5)));
-//                    Log.v("dalem", "" + transDet.getString(2));
+//                    dbDetailTransaksi.execSQL("Create table if not exists stock(sku VARCHAR, name VARCHAR, amount INTEGER, price INTEGER, category VARCHAR, supplier VARCHAR, image VARCHAR);");
+//                    Cursor item = dbDetailTransaksi.rawQuery("select name from stock where sku = '" + transDet.getInt(2) + "' ", null);
+//                    item.moveToFirst();
+                    String nama = transDet.getString(3);
+                    listOfDetTrans.add(new TransDetail("" + transDet.getInt(0), transDet.getString(2), nama, transDet.getString(4), transDet.getString(5), transDet.getString(6)));
                 } while (transDet.moveToNext());
         }
         adapter = new ListDetilTransaksiAdapter(DetailTransaksiActivity.this, getBaseContext(), listOfDetTrans);
+        recList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recList.setAdapter(adapter);
     }
 }

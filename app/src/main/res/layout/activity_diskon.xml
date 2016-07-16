@@ -13,6 +13,7 @@
         android:layout_height="0dp"
         android:layout_above="@+id/buttonLanjutDiskon"
         android:layout_weight="3"
+        android:layout_margin="10dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -21,7 +22,8 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:text="Pilihan Diskon"
-            android:id="@+id/pilihanDiskonText" />
+            android:id="@+id/pilihanDiskonText"
+            android:textStyle="bold"/>
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -34,7 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/discount4"
-                android:id="@+id/radioDisc4" />
+                android:id="@+id/radioDisc4"
+                android:checked="true"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -62,7 +65,7 @@
             android:paddingBottom="5dp"
             android:textSize="18dp"
             android:text="Diskon Member"
-            android:id="@+id/textView2" />
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,12 +87,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextKodeDiskon"
                 android:layout_weight="1" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14dp"
-                android:text="ADD"
-                android:id="@+id/buttonTambahDiskonKode" />
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:id="@+id/buttonTambahDiskonKode"
+                android:background="@drawable/circle_plus"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -106,6 +108,7 @@
             android:text="LANJUT"
             android:id="@+id/buttonLanjutDiskon"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 </LinearLayout>

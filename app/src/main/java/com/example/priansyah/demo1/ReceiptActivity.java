@@ -33,6 +33,7 @@ public class ReceiptActivity extends AppCompatActivity {
     ListDetilTransaksiAdapter adapter;
     TextView textViewBayarRcp;
     TextView textViewKembalianRcp;
+    TextView textViewTanggalRcp;
     Button buttonKirim;
     Button buttonSelesai;
     double total;
@@ -54,6 +55,7 @@ public class ReceiptActivity extends AppCompatActivity {
         mTitle.setText("Struk");
         textViewBayarRcp = (TextView) findViewById(R.id.textViewBayarRcp);
         textViewKembalianRcp = (TextView) findViewById(R.id.textViewKembalianRcp);
+        textViewTanggalRcp = (TextView) findViewById(R.id.textViewTanggalRcp);
         buttonKirim = (Button) findViewById(R.id.buttonKirim);
         buttonSelesai = (Button) findViewById(R.id.buttonSelesai);
 
@@ -77,12 +79,14 @@ public class ReceiptActivity extends AppCompatActivity {
 //                }while(items.moveToNext());
 
         adapter = new ListDetilTransaksiAdapter(this, getBaseContext(), listOfTransactionDetail);
+        recList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recList.setAdapter(adapter);
 
         total = getIntent().getDoubleExtra("TOTAL",0.0);
         change = paymentValue-total;
-        textViewBayarRcp.setText("" + paymentValue);
-        textViewKembalianRcp.setText("" + change);
+        textViewBayarRcp.setText("Rp " + paymentValue + ",-");
+        textViewKembalianRcp.setText("Rp " + change + ",-");
+        textViewTanggalRcp.setText(listOfTransactionDetail.get(listOfTransactionDetail.size()-1).getTextTanggalTrans());
 
         buttonKirim.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

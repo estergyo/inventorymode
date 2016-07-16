@@ -97,7 +97,9 @@ public class ExpandableListTransaksiAdapter extends RecyclerView.Adapter<Recycle
                 break;
             case CHILD:
                 final ChildViewHolder childController = (ChildViewHolder) holder;
-                childController.textViewHarga.setText(data.get(position).transaksi.getTextTotalTrans());
+                childController.textViewHarga.setText("Rp"+data.get(position).transaksi.getTextTotalTrans()+",-");
+                childController.textViewWaktu.setText(data.get(position).transaksi.getTextWaktuTrans());
+                childController.textViewId.setText("#"+data.get(position).transaksi.getTextTransId());
                 break;
         }
     }
@@ -127,10 +129,14 @@ public class ExpandableListTransaksiAdapter extends RecyclerView.Adapter<Recycle
     public class ChildViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         protected TextView textViewHarga;
+        protected TextView textViewWaktu;
+        protected TextView textViewId;
 
         public ChildViewHolder(View v) {
             super(v);
-            textViewHarga = (TextView) v.findViewById(R.id.textViewTransaksiChild);
+            textViewHarga = (TextView) v.findViewById(R.id.textViewHargaChild);
+            textViewWaktu = (TextView) v.findViewById(R.id.textViewWaktuChild);
+            textViewId = (TextView) v.findViewById(R.id.textViewIdChild);
             v.setOnClickListener(this);
         }
 

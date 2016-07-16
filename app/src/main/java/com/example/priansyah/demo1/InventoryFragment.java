@@ -65,7 +65,7 @@ public class InventoryFragment extends Fragment {
 
         tabLayout.getTabAt(0).setText("Barang");
         tabLayout.getTabAt(1).setText("Kategori");
-        tabLayout.getTabAt(2).setText("Supplier");
+        tabLayout.getTabAt(2).setText("Pemasok");
         tabLayout.getTabAt(0).select();
 
     }

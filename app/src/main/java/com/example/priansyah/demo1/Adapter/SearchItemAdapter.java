@@ -47,6 +47,12 @@ public class SearchItemAdapter extends SimpleCursorAdapter
         return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 
+    public Item get(int position) {
+        Cursor cursor = getCursor();
+        cursor.moveToPosition(position);
+        return new Item(cursor.getString(1), cursor.getString(0), "" + cursor.getInt(2), "" + cursor.getInt(3), cursor.getString(5), cursor.getString(4), cursor.getString(6));
+    }
+
 //    @Override
 //    public Cursor runQueryOnBackgroundThread(CharSequence constraint)
 //    {
